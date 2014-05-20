@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cml.dg.MainActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        
+	    <fragment
+	        android:id="@+id/menu"
+	        android:name="kr.co.ddonggame.MenuFragment"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        tools:layout="@layout/menu_fragment" />
+	</LinearLayout>
+
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="horizontal">
+	    
+	    <fragment
+	        android:id="@+id/roomList"
+	        android:name="kr.co.ddonggame.RoomListFragment"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        tools:layout="@layout/roomlist_fragment" />
+	</LinearLayout>
+
+</LinearLayout>
+

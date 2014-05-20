@@ -9,6 +9,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
@@ -20,27 +26,29 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.os.Build;
 
 public class GameActivity extends ActionBarActivity implements OnClickListener {
-	MainView mainView;
-	private WakeLock wakeLock;
-
+	
+	private ImageView firstCard;
+	private ImageView secondCard;
+	private ImageView thirdCard;
+	private ImageView fourthCard;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_game);
-
+		//setContentView(R.layout.activity_game);
+		setContentView(new GameView(this));
+/*
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-		
-		
-		
-		
+		*/
+		//firstCard = (ImageView) findViewById(R.drawable.card_back);
 	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -55,7 +63,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		
+
 		return super.onOptionsItemSelected(item);
 	}
 
