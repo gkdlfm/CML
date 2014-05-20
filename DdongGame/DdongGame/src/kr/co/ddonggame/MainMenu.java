@@ -21,6 +21,7 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
+		//setContentView(R.layout.fragment_main_menu);
 		btnGameStart = (Button)findViewById(R.id.btnGameStart);
 		btnGameStart.setOnClickListener(this);
 		if (savedInstanceState == null) {
@@ -73,7 +74,7 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 		switch(btn){
 		case R.id.btnGameStart:
 			setContentView(R.layout.activity_game);
-			//startActivity(new Intent(this, GameActivity.class));
+			startActivity(new Intent(this, GameActivity.class));
 			break;
 		}
 		
