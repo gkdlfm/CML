@@ -1,4 +1,6 @@
-package com.example.ddonggame;
+package kr.co.ddonggame;
+
+import com.example.ddonggame.R;
 
 import android.content.Intent;
 import android.os.Bundle;

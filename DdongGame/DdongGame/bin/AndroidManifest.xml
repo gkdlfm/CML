@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.ddonggame.MainActivity"
+            android:name="kr.co.ddonggame.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >
             <intent-filter>
@@ -24,10 +24,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.ddonggame.MainMenu"
+            android:name="kr.co.ddonggame.MainMenu"
             android:label="@string/title_activity_main_menu"
-            android:screenOrientation="landscape"
-             >
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="kr.co.ddonggame.game.GameActivity"
+            android:label="@string/title_activity_game" >
         </activity>
     </application>
 
