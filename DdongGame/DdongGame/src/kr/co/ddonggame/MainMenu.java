@@ -17,16 +17,29 @@ import com.example.ddonggame.R;
 
 public class MainMenu extends ActionBarActivity implements OnClickListener {
 	private Button btnGameStart;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
-		btnGameStart = (Button)findViewById(R.id.btnGameStart);
-		btnGameStart.setOnClickListener(this);
+		
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		int btn = v.getId();
+		
+		switch(btn){
+		case R.id.btnGameStart:
+			setContentView(R.layout.activity_game);
+			startActivity(new Intent(this, GameActivity.class));
+			break;
+		}
+		
 	}
 
 	@Override
@@ -65,18 +78,4 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 			return rootView;
 		}
 	}
-
-	@Override
-	public void onClick(View v) {
-		int btn = v.getId();
-		
-		switch(btn){
-		case R.id.btnGameStart:
-			setContentView(R.layout.activity_game);
-			//startActivity(new Intent(this, GameActivity.class));
-			break;
-		}
-		
-	}
-
 }

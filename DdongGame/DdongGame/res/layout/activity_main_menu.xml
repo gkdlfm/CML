@@ -6,11 +6,5 @@
     tools:context="kr.co.ddonggame.MainMenu"
     tools:ignore="MergeRootFrame" 
     >
-    <Button
-        android:id="@+id/btnGameStart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="GameStart"
-        />
 </FrameLayout>
     
