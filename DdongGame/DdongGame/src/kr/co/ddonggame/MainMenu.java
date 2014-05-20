@@ -22,7 +22,9 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
-		
+		//setContentView(R.layout.fragment_main_menu);
+		btnGameStart = (Button)findViewById(R.id.btnGameStart);
+		btnGameStart.setOnClickListener(this);
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
