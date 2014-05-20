@@ -33,6 +33,11 @@
             android:label="@string/title_activity_game"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name="kr.co.ddonggame.GameRoom"
+            android:label="@string/title_activity_game_room"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>

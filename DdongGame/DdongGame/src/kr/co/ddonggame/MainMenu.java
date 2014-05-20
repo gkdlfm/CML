@@ -36,7 +36,7 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 		int btn = v.getId();
 		switch(btn){
 		case R.id.btnGameStart:
-			startActivity(new Intent(this, GameActivity.class));
+			startActivity(new Intent(this, GameRoom.class));
 			break;
 		}
 		
