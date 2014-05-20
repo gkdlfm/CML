@@ -1,9 +1,8 @@
 package kr.co.ddonggame.game;
 
 import kr.co.ddonggame.util.ConvertUtil;
-
 import com.example.ddonggame.R;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +25,7 @@ public class GameView extends View {
 		fourthCard = BitmapFactory.decodeResource(getResources(), R.drawable.card_back);		
 	}
 	
+	@SuppressLint("DrawAllocation")
 	@Override
 	protected void onDraw(Canvas canvas) {		
 		int cardWidth = firstCard.getWidth();
@@ -34,10 +34,12 @@ public class GameView extends View {
 		int realCardWidth = canvas.getWidth() / 4;
 		int realCardHeight = cardHeight * realCardWidth / cardWidth;
 		
-		canvas.drawBitmap(firstCard, null, new Rect(0, 0, realCardWidth, realCardHeight), null);
-		canvas.drawBitmap(secondCard, null, new Rect(realCardWidth, 0, 2 * realCardWidth, realCardHeight), null);
-		canvas.drawBitmap(thirdCard, null, new Rect(2 * realCardWidth, 0, 3 * realCardWidth, realCardHeight), null);
-		canvas.drawBitmap(fourthCard, null, new Rect(3 * realCardWidth, 0,4 * realCardWidth, realCardHeight), null);
+		int marginHeight = (canvas.getHeight() - realCardHeight) / 2;
+		
+		canvas.drawBitmap(firstCard, null, new Rect(0, marginHeight, realCardWidth, realCardHeight + marginHeight), null);
+		canvas.drawBitmap(secondCard, null, new Rect(realCardWidth, marginHeight, 2 * realCardWidth, realCardHeight + marginHeight), null);
+		canvas.drawBitmap(thirdCard, null, new Rect(2 * realCardWidth, marginHeight, 3 * realCardWidth, realCardHeight + marginHeight), null);
+		canvas.drawBitmap(fourthCard, null, new Rect(3 * realCardWidth, marginHeight, 4 * realCardWidth, realCardHeight + marginHeight), null);
 		
 		super.onDraw(canvas);
 	}
