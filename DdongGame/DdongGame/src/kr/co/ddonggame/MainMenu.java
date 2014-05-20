@@ -34,10 +34,8 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		int btn = v.getId();
-		
 		switch(btn){
 		case R.id.btnGameStart:
-			setContentView(R.layout.activity_game);
 			startActivity(new Intent(this, GameActivity.class));
 			break;
 		}
