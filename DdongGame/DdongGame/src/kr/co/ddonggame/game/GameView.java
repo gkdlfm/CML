@@ -1,25 +1,23 @@
 package kr.co.ddonggame.game;
-
-import kr.co.ddonggame.util.ConvertUtil;
-
-import com.example.ddonggame.R;
-
+import java.util.TimerTask;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.view.MotionEvent;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.ddonggame.R;
 
 public class GameView extends View {
 	private Bitmap firstCard;
 	private Bitmap secondCard;
 	private Bitmap thirdCard;
 	private Bitmap fourthCard;
-
 	public GameView(Context context) {
 		super(context);
 		
@@ -31,7 +29,7 @@ public class GameView extends View {
 	
 	@SuppressLint("DrawAllocation")
 	@Override
-	protected void onDraw(Canvas canvas) {		
+	protected void onDraw(Canvas canvas) {
 		int cardWidth = firstCard.getWidth();
 		int cardHeight = firstCard.getHeight();
 		
