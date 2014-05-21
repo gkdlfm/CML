@@ -2,14 +2,14 @@ package kr.co.ddonggame.game;
 
 import java.util.Random;
 
+import kr.co.ddonggame.custom.CustomDialog;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
@@ -151,7 +150,8 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		} else if( doubleClick[cardNum - 1] == 2){		
 			selectCard(cardNum);			
 		} else if (doubleClick[cardNum - 1] == 3) {
-			firstCard.setY(firstCard.getY() - 50);			
+			Dialog confirm = new CustomDialog(this, "이 패를 선택하시겠습니까?");
+			confirm.show();
 		}
 	}
 
