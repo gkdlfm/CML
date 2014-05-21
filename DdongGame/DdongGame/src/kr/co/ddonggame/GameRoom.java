@@ -22,11 +22,12 @@ public class GameRoom extends ActionBarActivity implements OnClickListener{
 		setContentView(R.layout.activity_gameroom);
 		btnRoom = new Button[6];
 		roomOpenAndClose = new boolean[6];
-		int temp = R.id.btnRoom1Enter;
 		
-		for(int i=0; i<6; i++){
-			btnRoom[i] = (Button)findViewById(temp+i);
-			btnRoom[i].setOnClickListener(this);
+		
+		for(int i=1; i<=6; i++){
+			int temp = getResources().getIdentifier("btnRoom"+i+"Enter", "id", "com.example.ddonggame");
+			btnRoom[i-1] = (Button)findViewById(temp);
+			btnRoom[i-1].setOnClickListener(this);
 		}
 		
 		//GameRoom Activity요청시 서버에서 방목록의 정보를 가져와서 room1TextView의 text (방 번호)를 바꾸어준다.

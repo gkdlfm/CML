@@ -1,12 +1,13 @@
 package kr.co.ddonggame.game;
 
 import java.util.Random;
-
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +17,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-
 import com.example.ddonggame.R;
 
 public class GameActivity extends ActionBarActivity implements OnClickListener {
@@ -26,36 +26,37 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 	private ImageView thirdCard;
 	private ImageView fourthCard;
 	Bitmap hwatooDeck[][] = new Bitmap[12][4];
+	int deck[][] = new int[12][4];
+	int doubleClick[] = new int[4];
 	
-	
-	/*
 	//서버가 처음 카드를 분배하는 방법 - 12대신 게임에 참여하는 user의 숫자를 변수로 대입하면됨
 	void ran(){
-		int deck[][] = new int[12][4];
+		
 		Random rand = new Random();
 		int i=0, j=0;
-		int [][]count = new int[12][4];
+		int []count = new int[12];
 		for(i=0; i<12; i++)
-			for(j=0; j<4; j++)
-				count[i][j] = 0;
+			count[i] = 0;
 		i=0;j=0;
 		while(true){
 			int user = rand.nextInt(12);
 			int card = rand.nextInt(4);
-			if(i==12 && j==4)
+			if(i==12)
 				break;
-			if(count[user][card]==4){
+			if(count[user]==4){
 				continue;
 			}
-			deck[user][card]=i*100 + j;
-			count[user][card]++;
+			deck[user][count[user]]=(i+1)*100 + (j+1);
+			count[user]++;
 			j++;
 			if(j==4){
 				j=0;
 				i++;
 			}
+			Log.i("test i : ", Integer.toString(i));
+			Log.i("test j : ", Integer.toString(j));
 		}
-	}*/
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +72,14 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		//GameActivity 요청시에 방정보에 해당하는 인원수, 유저가 정한 화투패의 타입에 따라 image를 Road하고, 초기 화투패 분배.
 		//같은 imageView를 두번 클릭시에 카드를 넘길 준비가 완료된 상태로 모두가 준비가 되면 카드가 옮겨 가게됨.
 		//이후 같은 카드가 4개가 되면 똥이라는 걸 확인하기 위해 Method추가.[ boolean DDongCheck() ] imageView의 id값들을 조사해서 같은 월이 4장인지 판단해주는 것.
-		int temp = R.drawable.a1_1;
+		//int temp = R.drawable.a1_1;
+		ran();
 		for (int j = 0; j < 4; j++) {
+			int wol = deck[0][j]/100;
+			int il = deck[0][j]-(wol*100);
+			int temp = getResources().getIdentifier("a"+wol+"_"+il, "drawable", "com.example.ddonggame");
 			hwatooDeck[0][j] = BitmapFactory.decodeResource(getResources(),
-					temp++);
+					temp);
 		}
 		firstCard = (ImageView)findViewById(R.id.firstCard);
 		secondCard = (ImageView)findViewById(R.id.secondCard);
@@ -84,6 +89,8 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		secondCard.setOnClickListener(this);
 		thirdCard.setOnClickListener(this);
 		fourthCard.setOnClickListener(this);
+		for(int i=0; i<4; i++)
+			doubleClick[i]=0;
 		/*
 		 * setContentView(new GameView(this));
 		 * 
@@ -136,18 +143,41 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		switch (id) {
 		case R.id.firstCard:
 			firstCard.setImageBitmap(hwatooDeck[0][0]);
+			doubleClick(1);
 			break;
 		case R.id.secondCard:
 			secondCard.setImageBitmap(hwatooDeck[0][1]);
+			doubleClick(2);
 			break;
 		case R.id.thirdCard:
 			thirdCard.setImageBitmap(hwatooDeck[0][2]);
+			doubleClick(3);
 			break;
 		case R.id.fourthCard:
 			fourthCard.setImageBitmap(hwatooDeck[0][3]);
+			doubleClick(4);
 			break;
 		default:
 			break;
+		}
+	}
+	
+	@SuppressLint("NewApi")
+	void doubleClick(int cardNum){
+		if(doubleClick[cardNum-1]==0){
+			doubleClick[cardNum-1]++;
+			return;
+		}
+		
+		for(int i=0; i<4; i++){
+			if(i!=cardNum-1)
+				doubleClick[i]=1;
+			doubleClick[i]++;
+		}
+		if(doubleClick[cardNum-1]==2){
+			if(cardNum==1){
+				firstCard.setY(firstCard.getY()-50);
+			}
 		}
 	}
 
