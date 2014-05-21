@@ -144,45 +144,14 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 
 	@SuppressLint("NewApi")
 	void doubleClick(int cardNum) {
-		if (doubleClick[cardNum - 1] == 0) {
-			doubleClick[cardNum - 1]++;
-			return;
-		}
-
-		for (int i = 0; i < 4; i++) {
-			if (i != cardNum - 1)
-				doubleClick[i] = 1;
-			doubleClick[i]++;
-		}
+		doubleClick[cardNum - 1]++;
 		
-		if (doubleClick[cardNum - 1] == 2) {
-			
-			if (cardNum == 1 && firstCard.getY() == originCardTop) {
-				firstCard.setY(firstCard.getY() - 50);
-				secondCard.setY(originCardTop);
-				thirdCard.setY(originCardTop);
-				fourthCard.setY(originCardTop);
-			}
-			if (cardNum == 2 && secondCard.getY() == originCardTop) {
-				secondCard.setY(secondCard.getY() - 50);
-				firstCard.setY(originCardTop);
-				thirdCard.setY(originCardTop);
-				fourthCard.setY(originCardTop);
-			}
-			if (cardNum == 3 && thirdCard.getY() == originCardTop) {
-				thirdCard.setY(thirdCard.getY() - 50);
-				firstCard.setY(originCardTop);
-				secondCard.setY(originCardTop);
-				fourthCard.setY(originCardTop);
-			}
-			if (cardNum == 4 && fourthCard.getY() == originCardTop) {
-				fourthCard.setY(fourthCard.getY() - 50);
-				firstCard.setY(originCardTop);
-				secondCard.setY(originCardTop);
-				thirdCard.setY(originCardTop);
-			}
-			
-			doubleClickInit(1);
+		if (doubleClick[cardNum - 1] == 1) {
+			return;
+		} else if( doubleClick[cardNum - 1] == 2){		
+			selectCard(cardNum);			
+		} else if (doubleClick[cardNum - 1] == 3) {
+			firstCard.setY(firstCard.getY() - 50);			
 		}
 	}
 
@@ -195,14 +164,41 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		thirdCard.startAnimation(animation);
 		fourthCard.startAnimation(animation);		
 	}
+
+	private void selectCard(int cardNum) {		
+		if (cardNum == 1 && firstCard.getY() == originCardTop) {
+			firstCard.setY(firstCard.getY() - 50);
+			secondCard.setY(originCardTop);
+			thirdCard.setY(originCardTop);
+			fourthCard.setY(originCardTop);
+		} else if (cardNum == 2 && secondCard.getY() == originCardTop) {
+			secondCard.setY(secondCard.getY() - 50);
+			firstCard.setY(originCardTop);
+			thirdCard.setY(originCardTop);
+			fourthCard.setY(originCardTop);
+		} else if (cardNum == 3 && thirdCard.getY() == originCardTop) {
+			thirdCard.setY(thirdCard.getY() - 50);
+			firstCard.setY(originCardTop);
+			secondCard.setY(originCardTop);
+			fourthCard.setY(originCardTop);
+		} else if (cardNum == 4 && fourthCard.getY() == originCardTop) {
+			fourthCard.setY(fourthCard.getY() - 50);
+			firstCard.setY(originCardTop);
+			secondCard.setY(originCardTop);
+			thirdCard.setY(originCardTop);
+		}			
+		
+		doubleClickInit(1, cardNum);		
+	}
 	
 	private void doubleClickInit(){
-		doubleClickInit(0);
+		doubleClickInit(0, 0);
 	}
 
-	private void doubleClickInit(int clickCount) {		
+	private void doubleClickInit(int clickCount, int cardNum) {		
 		for (int i = 0; i < 4; i++){
-			doubleClick[i] = clickCount;
+			if(cardNum - 1 != i)
+				doubleClick[i] = clickCount;
 		}				
 	}
 
