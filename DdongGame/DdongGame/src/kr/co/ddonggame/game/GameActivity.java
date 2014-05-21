@@ -28,10 +28,12 @@ import com.example.ddonggame.R;
 public class GameActivity extends ActionBarActivity implements OnClickListener {
 
 	private ImageView firstCard, secondCard, thirdCard, fourthCard;
-	private Animation cardDownAnimation;
 	private Bitmap hwatooDeck[][] = new Bitmap[12][4];
+	private Animation cardDownAnimation;
 	private int deck[][] = new int[12][4];
 	private int doubleClick[] = new int[4];
+	
+	private int originCardTop;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,8 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		thirdCard = (ImageView) findViewById(R.id.thirdCard);
 		fourthCard = (ImageView) findViewById(R.id.fourthCard);
 		
+		originCardTop = (int) firstCard.getY();
+		
 		cardDownAnimation = AnimationUtils.loadAnimation(this, R.anim.card_down);
 		
 		setAnimation(cardDownAnimation);
@@ -74,9 +78,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		thirdCard.setOnClickListener(this);
 		fourthCard.setOnClickListener(this);
 		
-		for (int i = 0; i < 4; i++){
-			doubleClick[i] = 0;
-		}
+		doubleClickInit();
 	}
 
 	@Override
@@ -152,10 +154,35 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 				doubleClick[i] = 1;
 			doubleClick[i]++;
 		}
+		
 		if (doubleClick[cardNum - 1] == 2) {
-			if (cardNum == 1) {
+			
+			if (cardNum == 1 && firstCard.getY() == originCardTop) {
 				firstCard.setY(firstCard.getY() - 50);
+				secondCard.setY(originCardTop);
+				thirdCard.setY(originCardTop);
+				fourthCard.setY(originCardTop);
 			}
+			if (cardNum == 2 && secondCard.getY() == originCardTop) {
+				secondCard.setY(secondCard.getY() - 50);
+				firstCard.setY(originCardTop);
+				thirdCard.setY(originCardTop);
+				fourthCard.setY(originCardTop);
+			}
+			if (cardNum == 3 && thirdCard.getY() == originCardTop) {
+				thirdCard.setY(thirdCard.getY() - 50);
+				firstCard.setY(originCardTop);
+				secondCard.setY(originCardTop);
+				fourthCard.setY(originCardTop);
+			}
+			if (cardNum == 4 && fourthCard.getY() == originCardTop) {
+				fourthCard.setY(fourthCard.getY() - 50);
+				firstCard.setY(originCardTop);
+				secondCard.setY(originCardTop);
+				thirdCard.setY(originCardTop);
+			}
+			
+			doubleClickInit(1);
 		}
 	}
 
@@ -164,12 +191,19 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		animation.setFillAfter(true);
 				
 		firstCard.startAnimation(animation);
-		SystemClock.sleep(50);
 		secondCard.startAnimation(animation);
-		SystemClock.sleep(50);
 		thirdCard.startAnimation(animation);
-		SystemClock.sleep(50);
 		fourthCard.startAnimation(animation);		
+	}
+	
+	private void doubleClickInit(){
+		doubleClickInit(0);
+	}
+
+	private void doubleClickInit(int clickCount) {		
+		for (int i = 0; i < 4; i++){
+			doubleClick[i] = clickCount;
+		}				
 	}
 
 	// 서버가 처음 카드를 분배하는 방법 - 12대신 게임에 참여하는 user의 숫자를 변수로 대입하면됨
