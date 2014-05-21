@@ -1,50 +1,48 @@
 package kr.co.ddonggame.game;
 
-import kr.co.ddonggame.util.ConvertUtil;
+import java.util.TimerTask;
 
-import com.example.ddonggame.R;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
+
+import com.example.ddonggame.R;
 
 public class GameView extends View {
 	private Bitmap firstCard;
 	private Bitmap secondCard;
 	private Bitmap thirdCard;
 	private Bitmap fourthCard;
-	
-	private float cardWidth;
-	private float cardHeight;
-
 	public GameView(Context context) {
 		super(context);
 		
 		firstCard = BitmapFactory.decodeResource(getResources(), R.drawable.card_back);
 		secondCard = BitmapFactory.decodeResource(getResources(), R.drawable.card_back);
 		thirdCard = BitmapFactory.decodeResource(getResources(), R.drawable.card_back);
-		fourthCard = BitmapFactory.decodeResource(getResources(), R.drawable.card_back);
-		
-		cardWidth = ConvertUtil.convertPixelToDp(255, context);
-		cardHeight = ConvertUtil.convertPixelToDp(400, context);
+		fourthCard = BitmapFactory.decodeResource(getResources(), R.drawable.card_back);		
 	}
 	
+	@SuppressLint("DrawAllocation")
 	@Override
 	protected void onDraw(Canvas canvas) {
-		int x, y;
-		x = canvas.getWidth();
-		y = canvas.getHeight();
-		x /= 4;
+		int cardWidth = firstCard.getWidth();
+		int cardHeight = firstCard.getHeight();
 		
-		Rect rect1 = new Rect(0, 0, x, y);
+		int realCardWidth = canvas.getWidth() / 4;
+		int realCardHeight = cardHeight * realCardWidth / cardWidth;
 		
-		canvas.drawBitmap(firstCard, null, new Rect(0, 0, (int)cardWidth, (int)cardHeight), null);
-		canvas.drawBitmap(secondCard, null, new Rect(x,0,2*x,y), null);
-		canvas.drawBitmap(thirdCard, null, new Rect(2*x,0,3*x,y), null);
-		canvas.drawBitmap(fourthCard, null, new Rect(3*x,0,4*x,y), null);
+		int marginHeight = (canvas.getHeight() - realCardHeight) / 2;
+		
+		canvas.drawBitmap(firstCard, null, new Rect(0, marginHeight, realCardWidth, realCardHeight + marginHeight), null);
+		canvas.drawBitmap(secondCard, null, new Rect(realCardWidth, marginHeight, 2 * realCardWidth, realCardHeight + marginHeight), null);
+		canvas.drawBitmap(thirdCard, null, new Rect(2 * realCardWidth, marginHeight, 3 * realCardWidth, realCardHeight + marginHeight), null);
+		canvas.drawBitmap(fourthCard, null, new Rect(3 * realCardWidth, marginHeight, 4 * realCardWidth, realCardHeight + marginHeight), null);
 		
 		super.onDraw(canvas);
 	}
