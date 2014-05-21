@@ -1,14 +1,18 @@
 package kr.co.ddonggame.game;
 
 import kr.co.ddonggame.util.ConvertUtil;
+
 import com.example.ddonggame.R;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 
 public class GameView extends View {
 	private Bitmap firstCard;

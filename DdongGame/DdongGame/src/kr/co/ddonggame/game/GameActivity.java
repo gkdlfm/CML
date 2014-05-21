@@ -39,8 +39,8 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_game);
-		setContentView(new GameView(this));
+		setContentView(R.layout.activity_game);
+		//setContentView(new GameView(this));
 /*
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
@@ -48,6 +48,8 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		}
 		*/
 		//firstCard = (ImageView) findViewById(R.drawable.card_back);
+		
+		firstCard = new ImageView(this);
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
