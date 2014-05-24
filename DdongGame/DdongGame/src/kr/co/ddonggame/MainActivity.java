@@ -1,9 +1,15 @@
 package kr.co.ddonggame;
 
+import java.io.IOException;
+
+import kr.co.ddonggame.client.Client;
+import kr.co.ddonggame.client.ClientThread;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,10 +26,17 @@ import com.example.ddonggame.R;
 public class MainActivity extends ActionBarActivity implements OnClickListener{
 	private Button btnJoin;
 	private EditText editID;
+	private Client client;
+	private ClientThread clientThread;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
+		
+		
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main);
 		
@@ -35,6 +48,12 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 		btnJoin = (Button)this.findViewById(R.id.btnJoin);
 		btnJoin.setOnClickListener(this);
 		editID = (EditText)this.findViewById(R.id.editID);
+		clientThread = ClientThread.getInstance();
+		clientThread.start();
+	}
+	protected void onDestroy(){
+		String msg = "#quit";
+		clientThread.client.handleMessage(msg);
 	}
 	public void onClick(View v){
 		int btn = v.getId();

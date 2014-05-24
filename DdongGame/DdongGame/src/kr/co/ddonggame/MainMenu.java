@@ -1,6 +1,6 @@
 package kr.co.ddonggame;
 
-import kr.co.ddonggame.game.GameActivity;
+import kr.co.ddonggame.client.ClientThread;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,17 +9,17 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.ddonggame.R;
 
 public class MainMenu extends ActionBarActivity implements OnClickListener {
 	private Button btnGameStart;
-	
+	private ClientThread clientThread;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,6 +32,10 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		clientThread = ClientThread.getInstance();
+		//테스트용
+		String msg = "게임메뉴진입";
+		clientThread.client.handleMessage(msg);
 	}
 
 	@Override

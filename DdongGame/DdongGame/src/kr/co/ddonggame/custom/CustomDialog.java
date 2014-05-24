@@ -1,5 +1,7 @@
 package kr.co.ddonggame.custom;
 
+import kr.co.ddonggame.client.Client;
+
 import com.example.ddonggame.R;
 
 import android.app.Dialog;
@@ -13,7 +15,7 @@ import android.widget.TextView;
 public class CustomDialog extends Dialog implements OnClickListener{
 	private Button okButton;
 	private Button noButton;
-
+	
 	public CustomDialog(Context context, String title) {
 		super(context);
 		
@@ -28,11 +30,11 @@ public class CustomDialog extends Dialog implements OnClickListener{
 		
 		okButton.setOnClickListener(this);
 		noButton.setOnClickListener(this);
+		
 	}
 	
 	public void onClick(View view){
 		if(view == okButton){
-			
 		} else if (view == noButton){
 			dismiss();
 		}

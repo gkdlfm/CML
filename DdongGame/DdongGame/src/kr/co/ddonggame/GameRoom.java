@@ -1,13 +1,14 @@
 package kr.co.ddonggame;
 
+import kr.co.ddonggame.client.ClientThread;
 import kr.co.ddonggame.game.GameActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.example.ddonggame.R;
@@ -15,6 +16,7 @@ import com.example.ddonggame.R;
 public class GameRoom extends ActionBarActivity implements OnClickListener{
 	private Button[] btnRoom;
 	boolean []roomOpenAndClose;
+	private ClientThread clientThread;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -30,6 +32,10 @@ public class GameRoom extends ActionBarActivity implements OnClickListener{
 			btnRoom[i-1].setOnClickListener(this);
 		}
 		
+		
+		clientThread = ClientThread.getInstance();
+		String msg = "방정보 줘";
+		clientThread.client.handleMessage(msg);
 		//GameRoom Activity요청시 서버에서 방목록의 정보를 가져와서 room1TextView의 text (방 번호)를 바꾸어준다.
 	}
 	public void onClick(View v){
