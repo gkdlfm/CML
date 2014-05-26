@@ -26,7 +26,6 @@ import com.example.ddonggame.R;
 public class MainActivity extends ActionBarActivity implements OnClickListener{
 	private Button btnJoin;
 	private EditText editID;
-	private Client client;
 	private ClientThread clientThread;
 	
 	
@@ -64,6 +63,12 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 			startActivity(intent);
 			break;
 		}
+	}
+	public boolean joinCheck(){
+		String temp = editID.getText().toString();
+		String msg = "#join" + temp;
+		clientThread.client.handleMessage(msg);
+		return true;
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
