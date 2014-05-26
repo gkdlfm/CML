@@ -2,6 +2,9 @@ package kr.co.ddonggame.client;
 
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.StringTokenizer;
+
+import org.xml.sax.Parser;
 
 import kr.co.ddonggame.GameRoom;
 import kr.co.ddonggame.MainActivity;
@@ -32,8 +35,19 @@ public class Client implements ChatIF {
 		if(message.equals("#join ok")){
 			mainActivity.enterMainMenu();
 		}
-		else if(message.equals("#room1_open")){
-			
+		else if(message.matches("#room_information")){
+			StringTokenizer msg = new StringTokenizer(message, "_");
+			int gameRoomNumber=0;
+			String roomOpenOrClose = null;
+			while(msg.hasMoreTokens()){
+				String temp = msg.nextToken();
+				if(temp.matches("0-9")){
+					gameRoomNumber = Integer.parseInt(temp);
+					temp = msg.nextToken();
+					roomOpenOrClose = temp;
+				}
+			}
+			gameRoom.changeRoomInformation(gameRoomNumber, roomOpenOrClose);
 		}
 		
 	}

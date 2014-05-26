@@ -18,46 +18,52 @@ import android.widget.EditText;
 
 import com.example.ddonggame.R;
 
-public class MainActivity extends ActionBarActivity implements OnClickListener{
+public class MainActivity extends ActionBarActivity implements OnClickListener {
 	private Button btnJoin;
 	private EditText editID;
 	private ClientThread clientThread;
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		
-		
-		
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main);
-		
+
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-		
-		btnJoin = (Button)this.findViewById(R.id.btnJoin);
+
+		btnJoin = (Button) this.findViewById(R.id.btnJoin);
 		btnJoin.setOnClickListener(this);
-		editID = (EditText)this.findViewById(R.id.editID);
+		editID = (EditText) this.findViewById(R.id.editID);
 		clientThread = ClientThread.getInstance();
 		clientThread.start();
-		clientThread.client.setMainActivity(this);
+		clientThread.getClient().setMainActivity(this);
 	}
-	protected void onDestroy(){
-		String msg = "#quit";
-		clientThread.getClient().handleMessage(msg);
+
+	protected void onDestroy() {
+		clientThread.quit();
 	}
-	public void onClick(View v){
+
+	public void onClick(View v) {
 		int btn = v.getId();
-		switch(btn){
+		Intent intent;
+		switch (btn) {
 		case R.id.btnJoin:
 			clientThread.joinUser(editID.getText().toString());
 			break;
 		}
 	}
+
+	public boolean joinCheck() {
+		clientThread.joinUser(editID.getText().toString());
+		return true;
+	}
+	
 	public void enterMainMenu(){
 		startActivity(new Intent(this, MainMenu.class));
 	}

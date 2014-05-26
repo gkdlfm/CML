@@ -2,7 +2,7 @@ package kr.co.ddonggame.client;
 
 public class ClientThread extends Thread {
 	private static ClientThread clientThread;
-	public Client client;
+	private Client client;
 
 	private ClientThread() {
 
@@ -20,9 +20,12 @@ public class ClientThread extends Thread {
 	}
 
 	//회원가입
-	public void joinUser(String userId) {
+	public boolean joinUser(String userId) {
 		String msg = "#join" + userId;
 		client.handleMessage(msg);
+		
+		//일단 false
+		return false;
 	}
 	
 	//종료
@@ -38,8 +41,8 @@ public class ClientThread extends Thread {
 	}
 	
 	//방정보(type은 맞게 변경하면된다)
-	public void getRoomList(){
-		String msg = "방정보 줘";
+	public void getRoomList(int roomList){
+		String msg = "#room_information_"+roomList;
 		client.handleMessage(msg);
 	}
 
