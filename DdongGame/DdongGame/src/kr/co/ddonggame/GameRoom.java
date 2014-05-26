@@ -38,6 +38,11 @@ public class GameRoom extends ActionBarActivity implements OnClickListener{
 		clientThread.client.setGameRoom(this);
 		//GameRoom Activity요청시 서버에서 방목록의 정보를 가져와서 room1TextView의 text (방 번호)를 바꾸어준다.
 	}
+	
+	public void roomInformation(){
+		
+	}
+	
 	public void onClick(View v){
 		int id = v.getId();
 		switch (id) {

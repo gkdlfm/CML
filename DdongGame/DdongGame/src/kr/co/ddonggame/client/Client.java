@@ -32,6 +32,10 @@ public class Client implements ChatIF {
 		if(message.equals("#join ok")){
 			mainActivity.enterMainMenu();
 		}
+		else if(message.equals("#room1_open")){
+			
+		}
+		
 	}
 
 	public void setGameRoom(GameRoom gameRoom) {
