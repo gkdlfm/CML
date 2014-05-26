@@ -13,37 +13,40 @@ import android.widget.Button;
 
 import com.example.ddonggame.R;
 
-public class GameRoom extends ActionBarActivity implements OnClickListener{
+public class GameRoom extends ActionBarActivity implements OnClickListener {
 	private Button[] btnRoom;
-	boolean []roomOpenAndClose;
+	boolean[] roomOpenAndClose;
 	private ClientThread clientThread;
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_gameroom);
 		btnRoom = new Button[6];
 		roomOpenAndClose = new boolean[6];
-		
-		
-		for(int i=1; i<=6; i++){
-			int temp = getResources().getIdentifier("btnRoom"+i+"Enter", "id", "com.example.ddonggame");
-			btnRoom[i-1] = (Button)findViewById(temp);
-			btnRoom[i-1].setOnClickListener(this);
+
+		for (int i = 1; i <= 6; i++) {
+			int temp = getResources().getIdentifier("btnRoom" + i + "Enter",
+					"id", "com.example.ddonggame");
+			btnRoom[i - 1] = (Button) findViewById(temp);
+			btnRoom[i - 1].setOnClickListener(this);
 		}
-		
-		
+
 		clientThread = ClientThread.getInstance();
 		clientThread.getRoomList();
-		//GameRoom Activity요청시 서버에서 방목록의 정보를 가져와서 room1TextView의 text (방 번호)를 바꾸어준다.
+		// GameRoom Activity요청시 서버에서 방목록의 정보를 가져와서 room1TextView의 text (방 번호)를
+		// 바꾸어준다.
 	}
-	public void onClick(View v){
+
+	public void onClick(View v) {
 		int id = v.getId();
 		switch (id) {
 		case R.id.btnRoom1Enter:
 			startActivity(new Intent(this, GameActivity.class));
 			break;
-		
+
 		default:
 			break;
 		}

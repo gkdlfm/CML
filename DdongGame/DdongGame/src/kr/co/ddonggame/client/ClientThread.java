@@ -20,9 +20,12 @@ public class ClientThread extends Thread {
 	}
 
 	//회원가입
-	public void joinUser(String userId) {
+	public boolean joinUser(String userId) {
 		String msg = "#join" + userId;
 		client.handleMessage(msg);
+		
+		//일단 false
+		return false;
 	}
 	
 	//종료

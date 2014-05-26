@@ -1,32 +1,7 @@
 package kr.co.ddonggame.client;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.SocketException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.UnknownHostException;
-
-import org.apache.http.util.ByteArrayBuffer;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class Client implements ChatIF {
 	private String host = "203.249.22.116";
