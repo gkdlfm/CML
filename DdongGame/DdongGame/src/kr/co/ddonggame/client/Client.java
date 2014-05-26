@@ -35,6 +35,7 @@ public class Client implements ChatIF{
 	private String login = "android";
 	private ObjectOutputStream output;
 	private ChatClient client;
+	private String messageFromServer;
 	public Client(){
 		client = new ChatClient(host, port, login, this);
 	}
@@ -44,7 +45,7 @@ public class Client implements ChatIF{
 	}
 	@Override
 	public void display(String message) {
-		// TODO Auto-generated method stub
+		messageFromServer = message;
 		
 	}
 
