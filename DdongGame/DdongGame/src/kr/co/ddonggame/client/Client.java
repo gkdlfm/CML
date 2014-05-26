@@ -49,7 +49,21 @@ public class Client implements ChatIF {
 			}
 			gameRoom.changeRoomInformation(gameRoomNumber, roomOpenOrClose);
 		}
-		
+		else if(message.matches("#enter")){
+			if(message.equals("#enter_no")){
+				
+			}
+			else{
+				StringTokenizer msg = new StringTokenizer(message, "_");
+				while(msg.hasMoreTokens()){
+					String temp = msg.nextToken();
+					if(temp.matches("0-9")){
+						int roomEnterNumber = Integer.parseInt(temp);
+						gameRoom.roomEnter(roomEnterNumber);
+					}
+				}
+			}
+		}
 	}
 
 	public void setGameRoom(GameRoom gameRoom) {

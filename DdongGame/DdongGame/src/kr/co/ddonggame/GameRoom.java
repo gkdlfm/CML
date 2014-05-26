@@ -4,6 +4,7 @@ import org.xml.sax.Parser;
 
 import kr.co.ddonggame.client.ClientThread;
 import kr.co.ddonggame.game.GameActivity;
+import kr.co.ddonggame.game.RoomEnter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -24,6 +25,7 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 	private Button btnLeft;
 	private Button btnRight;
 	private int roomList = 1;
+	private int roomEnterNumber=0;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -67,9 +69,31 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 	
 	public void onClick(View v) {
 		int id = v.getId();
+		int roomNumber=0;
 		switch (id) {
 		case R.id.btnRoom1Enter:
-			startActivity(new Intent(this, GameActivity.class));
+			roomNumber = Integer.parseInt(roomTextView[0].getText().toString());
+			clientThread.getRoomEnter(roomNumber);
+			break;
+		case R.id.btnRoom2Enter:
+			roomNumber = Integer.parseInt(roomTextView[1].getText().toString());
+			clientThread.getRoomEnter(roomNumber);
+			break;
+		case R.id.btnRoom3Enter:
+			roomNumber = Integer.parseInt(roomTextView[2].getText().toString());
+			clientThread.getRoomEnter(roomNumber);
+			break;
+		case R.id.btnRoom4Enter:
+			roomNumber = Integer.parseInt(roomTextView[3].getText().toString());
+			clientThread.getRoomEnter(roomNumber);
+			break;
+		case R.id.btnRoom5Enter:
+			roomNumber = Integer.parseInt(roomTextView[4].getText().toString());
+			clientThread.getRoomEnter(roomNumber);
+			break;
+		case R.id.btnRoom6Enter:
+			roomNumber = Integer.parseInt(roomTextView[5].getText().toString());
+			clientThread.getRoomEnter(roomNumber);
 			break;
 		case R.id.btnRoomLeft:
 			roomList--;
@@ -83,4 +107,9 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 			break;
 		}
 	}
+	public void roomEnter(int roomEnterNumber){
+		this.roomEnterNumber = roomEnterNumber;
+		startActivity(new Intent(this, RoomEnter.class));
+	}
+	
 }
