@@ -32,7 +32,10 @@ public class Client implements ChatIF {
 	@Override
 	public void display(String message) {
 		messageFromServer = message;
-		if(message.equals("#join ok")){
+		if(message.equals("#join_ok")){
+			mainActivity.enterMainMenu();
+		}
+		else if(message.equals("#joincheck_ok")){
 			mainActivity.enterMainMenu();
 		}
 		else if(message.matches("#room_information")){

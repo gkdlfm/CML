@@ -1,10 +1,16 @@
 package kr.co.ddonggame;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import kr.co.ddonggame.client.ClientThread;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +28,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	private Button btnJoin;
 	private EditText editID;
 	private ClientThread clientThread;
-
+	private String phoneNumber;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,13 +42,27 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-
+		TimerTask mTask = new TimerTask(){
+			public void run() {
+				clientThread.getClient().setMainActivity(MainActivity.this);
+				clientThread.joinCheck(phoneNumber);
+				Log.i("test : phonenumber", phoneNumber);
+			}
+		};
+		clientThread = ClientThread.getInstance();
+		clientThread.start();
+		
+		TelephonyManager mTelephonyMgr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+		phoneNumber = mTelephonyMgr.getLine1Number();
+		
+		Timer timer = new Timer();
+		timer.schedule(mTask, 1000);
+		//타이머를 쓴이유는 getClient가 받아지지 않음. 클라이언트는 스레드로 돌려야하는데 스레드가 돌기전에 참조해서 nullpoint에러남.
+		
 		btnJoin = (Button) this.findViewById(R.id.btnJoin);
 		btnJoin.setOnClickListener(this);
 		editID = (EditText) this.findViewById(R.id.editID);
-		clientThread = ClientThread.getInstance();
-		clientThread.start();
-		clientThread.getClient().setMainActivity(this);
+		
 	}
 
 	protected void onDestroy() {
@@ -51,17 +71,12 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
 	public void onClick(View v) {
 		int btn = v.getId();
-		Intent intent;
 		switch (btn) {
 		case R.id.btnJoin:
-			clientThread.joinUser(editID.getText().toString());
+			clientThread.getClient().setMainActivity(MainActivity.this);
+			clientThread.joinUser(editID.getText().toString(), phoneNumber);
 			break;
 		}
-	}
-
-	public boolean joinCheck() {
-		clientThread.joinUser(editID.getText().toString());
-		return true;
 	}
 	
 	public void enterMainMenu(){
@@ -70,7 +85,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
