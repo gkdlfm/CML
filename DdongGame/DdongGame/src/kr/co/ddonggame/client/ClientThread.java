@@ -2,7 +2,7 @@ package kr.co.ddonggame.client;
 
 public class ClientThread extends Thread {
 	private static ClientThread clientThread;
-	private Client client;
+	public Client client;
 
 	private ClientThread() {
 
