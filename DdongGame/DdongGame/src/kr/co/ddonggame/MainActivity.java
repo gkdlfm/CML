@@ -1,15 +1,10 @@
 package kr.co.ddonggame;
 
-import java.io.IOException;
-
-import kr.co.ddonggame.client.Client;
 import kr.co.ddonggame.client.ClientThread;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,7 +47,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 	}
 	protected void onDestroy(){
 		String msg = "#quit";
-		clientThread.client.handleMessage(msg);
+		clientThread.getClient().handleMessage(msg);
 	}
 	public void onClick(View v){
 		int btn = v.getId();
@@ -65,9 +60,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 		}
 	}
 	public boolean joinCheck(){
-		String temp = editID.getText().toString();
-		String msg = "#join" + temp;
-		clientThread.client.handleMessage(msg);
+		clientThread.joinUser(editID.getText().toString());
 		return true;
 	}
 	@Override

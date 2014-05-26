@@ -33,9 +33,7 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 		clientThread = ClientThread.getInstance();
-		//테스트용
-		String msg = "게임메뉴진입";
-		clientThread.client.handleMessage(msg);
+		clientThread.enterMenu();
 	}
 
 	@Override
