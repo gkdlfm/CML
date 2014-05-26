@@ -42,6 +42,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		editID = (EditText) this.findViewById(R.id.editID);
 		clientThread = ClientThread.getInstance();
 		clientThread.start();
+		clientThread.getClient().setMainActivity(this);
 	}
 
 	protected void onDestroy() {
@@ -53,8 +54,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		Intent intent;
 		switch (btn) {
 		case R.id.btnJoin:
-			intent = new Intent(this, MainMenu.class);
-			startActivity(intent);
+			clientThread.joinUser(editID.getText().toString());
 			break;
 		}
 	}
@@ -63,7 +63,11 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		clientThread.joinUser(editID.getText().toString());
 		return true;
 	}
-
+	
+	public void enterMainMenu(){
+		startActivity(new Intent(this, MainMenu.class));
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
