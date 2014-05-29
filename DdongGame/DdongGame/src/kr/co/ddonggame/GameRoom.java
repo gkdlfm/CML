@@ -1,13 +1,12 @@
 package kr.co.ddonggame;
 
-import org.xml.sax.Parser;
-
 import kr.co.ddonggame.client.ClientThread;
-import kr.co.ddonggame.game.GameActivity;
 import kr.co.ddonggame.game.RoomEnter;
+import android.R.integer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -33,6 +32,7 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_gameroom);
 		btnRoom = new Button[6];
+		roomTextView = new TextView[6];
 		roomOpenAndClose = new boolean[6];
 		btnLeft = (Button)findViewById(R.id.btnRoomLeft);
 		btnLeft.setOnClickListener(this);
@@ -43,8 +43,8 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 					"id", "com.example.ddonggame");
 			btnRoom[i - 1] = (Button) findViewById(temp);
 			btnRoom[i - 1].setOnClickListener(this);
-			temp = getResources().getIdentifier("room"+i+"TextView", "id", "com.example.ddonggame");
-			roomTextView[i-1] = (TextView)findViewById(temp);
+			int temp2 = getResources().getIdentifier("room"+i+"TextView", "id", "com.example.ddonggame");
+			roomTextView[i-1] = (TextView)findViewById(temp2);
 		}
 
 		clientThread = ClientThread.getInstance();
@@ -54,6 +54,8 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 	}
 
 	public void changeRoomInformation(int gameRoomNumber, String roomOpenOrClose){
+		Log.i("gameRoomNumber", Integer.toString(gameRoomNumber));
+		Log.i("roomopenorclose",roomOpenOrClose);
 		for(int i=1; i<=6; i++){
 			int temp = (gameRoomNumber-1)*6+i;
 			roomTextView[i-1].setText(Integer.toString(temp));
@@ -65,6 +67,7 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 				btnRoom[i-1].setEnabled(true);
 			}
 		}
+		
 	}
 	
 	public void onClick(View v) {

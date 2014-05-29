@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 
 import org.xml.sax.Parser;
 
+import android.util.Log;
 import kr.co.ddonggame.GameRoom;
 import kr.co.ddonggame.MainActivity;
 
@@ -32,13 +33,14 @@ public class Client implements ChatIF {
 	@Override
 	public void display(String message) {
 		messageFromServer = message;
+		Log.i("test", message);
 		if(message.equals("#join_ok")){
 			mainActivity.enterMainMenu();
 		}
 		else if(message.equals("#joincheck_ok")){
 			mainActivity.enterMainMenu();
 		}
-		else if(message.matches("#room_information")){
+		else if(message.matches(".*#room_information.*")){
 			StringTokenizer msg = new StringTokenizer(message, "_");
 			int gameRoomNumber=0;
 			String roomOpenOrClose = null;
@@ -46,8 +48,10 @@ public class Client implements ChatIF {
 				String temp = msg.nextToken();
 				if(temp.matches("0-9")){
 					gameRoomNumber = Integer.parseInt(temp);
+					Log.i("test room infor", temp);
 					temp = msg.nextToken();
 					roomOpenOrClose = temp;
+					Log.i("test room infor2", temp);
 				}
 			}
 			gameRoom.changeRoomInformation(gameRoomNumber, roomOpenOrClose);
