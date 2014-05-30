@@ -23,6 +23,8 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 	private ClientThread clientThread;
 	private Button btnLeft;
 	private Button btnRight;
+	private Button btnRoomCreate;
+	private Button btnRoomRefresh;
 	private int roomList = 1;
 	private int roomEnterNumber=0;
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,10 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		btnLeft.setOnClickListener(this);
 		btnRight = (Button)findViewById(R.id.btnRoomRight);
 		btnRight.setOnClickListener(this);
+		btnRoomCreate = (Button)findViewById(R.id.btnRoomCreate);
+		btnRoomCreate.setOnClickListener(this);
+		btnRoomRefresh = (Button)findViewById(R.id.btnRoomRefresh);
+		btnRoomRefresh.setOnClickListener(this);
 		for (int i = 1; i <= 6; i++) {
 			int temp = getResources().getIdentifier("btnRoom" + i + "Enter",
 					"id", "com.example.ddonggame");
@@ -58,7 +64,9 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		Log.i("roomopenorclose",roomOpenOrClose);
 		for(int i=1; i<=6; i++){
 			int temp = (gameRoomNumber-1)*6+i;
+			//Log.i("gameRoom num : ", Integer.toString(temp));
 			roomTextView[i-1].setText(Integer.toString(temp));
+			Log.i("changeRoom num : ", Integer.toString(temp));
 			char a = roomOpenOrClose.charAt(i-1);
 			if(a=='0'){
 				btnRoom[i-1].setEnabled(false);
@@ -99,12 +107,16 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 			clientThread.getRoomEnter(roomNumber);
 			break;
 		case R.id.btnRoomLeft:
-			roomList--;
-			clientThread.getRoomList(roomList);
+			if(roomList>1){
+				roomList--;
+				clientThread.getRoomList(roomList);
+			}
 			break;
 		case R.id.btnRoomRight:
 			roomList++;
 			clientThread.getRoomList(roomList);
+			break;
+		case R.id.btnRoomRefresh:
 			break;
 		default:
 			break;

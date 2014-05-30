@@ -20,8 +20,7 @@ public class Client implements ChatIF {
 	private String messageFromServer;
 	private MainActivity mainActivity;
 	private GameRoom gameRoom;
-	
-	
+
 	public Client() {
 		client = new ChatClient(host, port, login, this);
 	}
@@ -33,38 +32,34 @@ public class Client implements ChatIF {
 	@Override
 	public void display(String message) {
 		messageFromServer = message;
-		Log.i("test", message);
-		if(message.equals("#join_ok")){
+		Log.i("Handlemessage From Server : ", message);
+
+		if (message.equals("#join_ok")) {
 			mainActivity.enterMainMenu();
-		}
-		else if(message.equals("#joincheck_ok")){
+		} else if (message.equals("#joincheck_ok")) {
 			mainActivity.enterMainMenu();
-		}
-		else if(message.matches(".*#room_information.*")){
+		} else if (message.matches(".*#room_information.*")) {
+			Log.i("test room infor", "room information");
+			Log.i("test room infor", message);
 			StringTokenizer msg = new StringTokenizer(message, "_");
-			int gameRoomNumber=0;
+			int gameRoomNumber = 0;
 			String roomOpenOrClose = null;
-			while(msg.hasMoreTokens()){
-				String temp = msg.nextToken();
-				if(temp.matches("0-9")){
-					gameRoomNumber = Integer.parseInt(temp);
-					Log.i("test room infor", temp);
-					temp = msg.nextToken();
-					roomOpenOrClose = temp;
-					Log.i("test room infor2", temp);
-				}
-			}
+			String temp = msg.nextToken();
+			temp = msg.nextToken();
+			temp = msg.nextToken();
+			gameRoomNumber = Integer.parseInt(temp);
+			temp = msg.nextToken();
+			roomOpenOrClose = temp;
 			gameRoom.changeRoomInformation(gameRoomNumber, roomOpenOrClose);
-		}
-		else if(message.matches("#enter")){
-			if(message.equals("#enter_no")){
-				
-			}
-			else{
+		} else if (message.matches(".*#enter.*")) {
+			Log.i("test", "enter");
+			if (message.equals("#enter_no")) {
+
+			} else {
 				StringTokenizer msg = new StringTokenizer(message, "_");
-				while(msg.hasMoreTokens()){
+				while (msg.hasMoreTokens()) {
 					String temp = msg.nextToken();
-					if(temp.matches("0-9")){
+					if (temp.matches("0-9")) {
 						int roomEnterNumber = Integer.parseInt(temp);
 						gameRoom.roomEnter(roomEnterNumber);
 					}
@@ -76,7 +71,7 @@ public class Client implements ChatIF {
 	public void setGameRoom(GameRoom gameRoom) {
 		this.gameRoom = gameRoom;
 	}
-	
+
 	public void setMainActivity(MainActivity mainActivity) {
 		this.mainActivity = mainActivity;
 	}
