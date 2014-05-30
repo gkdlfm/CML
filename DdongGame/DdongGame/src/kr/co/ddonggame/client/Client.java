@@ -20,9 +20,10 @@ public class Client implements ChatIF {
 	private String messageFromServer;
 	private MainActivity mainActivity;
 	private GameRoom gameRoom;
-
+	private UserInformation userInformation;
 	public Client() {
 		client = new ChatClient(host, port, login, this);
+		userInformation = UserInformation.getInstance();
 	}
 
 	public void handleMessage(String msg) {
@@ -36,7 +37,15 @@ public class Client implements ChatIF {
 
 		if (message.equals("#join_ok")) {
 			mainActivity.enterMainMenu();
-		} else if (message.equals("#joincheck_ok")) {
+		}else if(message.equals("#join_no")){
+			mainActivity.nickNameError();
+		}
+		else if (message.matches(".*#joincheck_ok.*")) {
+			StringTokenizer msg = new StringTokenizer(message, "_");
+			String temp = msg.nextToken();
+			temp = msg.nextToken();
+			temp = msg.nextToken();
+			userInformation.setNickName(temp);
 			mainActivity.enterMainMenu();
 		} else if (message.matches(".*#room_information.*")) {
 			StringTokenizer msg = new StringTokenizer(message, "_");
