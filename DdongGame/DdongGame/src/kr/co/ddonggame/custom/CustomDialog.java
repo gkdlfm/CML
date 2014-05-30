@@ -1,7 +1,5 @@
 package kr.co.ddonggame.custom;
 
-import kr.co.ddonggame.client.Client;
-
 import com.example.ddonggame.R;
 
 import android.app.Dialog;
@@ -10,6 +8,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class CustomDialog extends Dialog implements OnClickListener{
@@ -48,8 +48,16 @@ public class CustomDialog extends Dialog implements OnClickListener{
 		TextView titleView = (TextView) findViewById(R.id.customDialogTitle);
 		titleView.setText(title);
 		
+		LinearLayout editWrap = (LinearLayout) findViewById(R.id.editWrap);
+		
 		for(int i = 0 ; i < editText.length; i ++){
-			
+			if(i == 0 && editText[i]){
+				TextView entryCountTitle = new TextView(context);
+				entryCountTitle.setText("ÀÎ¿ø ¼ö : ");
+				editWrap.addView(entryCountTitle);			
+				
+				
+			}
 		}
 		
 		okButton = (Button) findViewById(R.id.customDialogOkBtn);
