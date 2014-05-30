@@ -5,14 +5,15 @@ import android.util.Log;
 public class ClientThread extends Thread {
 	private static ClientThread clientThread;
 	private Client client;
-
+	private UserInformation userInformation = UserInformation.getInstance();;
 	private ClientThread() {
 		
 	}
 
 	public static ClientThread getInstance() {
-		if (clientThread == null)
+		if (clientThread == null){
 			return clientThread = new ClientThread();
+		}
 		else
 			return clientThread;
 	}
@@ -59,7 +60,7 @@ public class ClientThread extends Thread {
 
 	//πÊ¿‘¿Â
 	public void getRoomEnter(int roomNumber){
-		String msg = "#room_enter_"+roomNumber;
+		String msg = "#enterroom_"+roomNumber+"_"+userInformation.getNickName();
 		client.handleMessage(msg);
 	}
 	

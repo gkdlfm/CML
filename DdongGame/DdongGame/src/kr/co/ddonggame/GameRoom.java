@@ -114,30 +114,37 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 			Dialog confirm = new CustomDialog(this, "방을 생성 하시겠습니까?", true);
 			break;
 		case R.id.btnRoomRefresh:
+			clientThread.getRoomList(roomList);
 			break;
 		case R.id.btnRoom1Enter:
 			roomNumber = Integer.parseInt(roomTextView[0].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
+			startActivity(new Intent(this, RoomEnter.class));
 			break;
 		case R.id.btnRoom2Enter:
 			roomNumber = Integer.parseInt(roomTextView[1].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
+			startActivity(new Intent(this, RoomEnter.class));
 			break;
 		case R.id.btnRoom3Enter:
 			roomNumber = Integer.parseInt(roomTextView[2].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
+			startActivity(new Intent(this, RoomEnter.class));
 			break;
 		case R.id.btnRoom4Enter:
 			roomNumber = Integer.parseInt(roomTextView[3].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
+			startActivity(new Intent(this, RoomEnter.class));
 			break;
 		case R.id.btnRoom5Enter:
 			roomNumber = Integer.parseInt(roomTextView[4].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
+			startActivity(new Intent(this, RoomEnter.class));
 			break;
 		case R.id.btnRoom6Enter:
 			roomNumber = Integer.parseInt(roomTextView[5].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
+			startActivity(new Intent(this, RoomEnter.class));
 			break;
 		case R.id.btnRoomLeft:
 			if (roomList > 1) {
