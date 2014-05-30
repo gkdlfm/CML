@@ -33,6 +33,33 @@ public class CustomDialog extends Dialog implements OnClickListener{
 		
 	}
 	
+	/**
+	 * 0 : entryCount
+	 * @param context
+	 * @param title
+	 * @param editText
+	 */
+	public CustomDialog(Context context, String title, boolean... editText) {
+		super(context);
+		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.custom_dialog);		
+		
+		TextView titleView = (TextView) findViewById(R.id.customDialogTitle);
+		titleView.setText(title);
+		
+		for(int i = 0 ; i < editText.length; i ++){
+			
+		}
+		
+		okButton = (Button) findViewById(R.id.customDialogOkBtn);
+		noButton = (Button) findViewById(R.id.customDialogNoBtn);
+		
+		okButton.setOnClickListener(this);
+		noButton.setOnClickListener(this);
+		
+	}
+	
 	public void onClick(View view){
 		if(view == okButton){
 		} else if (view == noButton){

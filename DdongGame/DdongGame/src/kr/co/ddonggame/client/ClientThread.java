@@ -49,6 +49,13 @@ public class ClientThread extends Thread {
 		client.handleMessage(msg);
 	}
 	
+	public int createRoom(int entryCount){
+		String msg = "#makeroom_" + entryCount;
+		
+		
+		return 0; // 만들어진 방번호 return
+	}
+	
 	//방정보(type은 맞게 변경하면된다)
 	public void getRoomList(int roomList){
 		String msg = "#room_information_"+roomList;
