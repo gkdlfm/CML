@@ -39,8 +39,6 @@ public class Client implements ChatIF {
 		} else if (message.equals("#joincheck_ok")) {
 			mainActivity.enterMainMenu();
 		} else if (message.matches(".*#room_information.*")) {
-			Log.i("test room infor", "room information");
-			Log.i("test room infor", message);
 			StringTokenizer msg = new StringTokenizer(message, "_");
 			int gameRoomNumber = 0;
 			String roomOpenOrClose = null;

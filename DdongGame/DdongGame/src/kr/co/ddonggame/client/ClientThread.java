@@ -43,11 +43,6 @@ public class ClientThread extends Thread {
 		client.handleMessage(msg);
 	}
 	
-	//게임 메뉴 진입
-	public void enterMenu(){
-		String msg = "게임메뉴진입";
-		client.handleMessage(msg);
-	}
 	
 	//방정보(type은 맞게 변경하면된다)
 	public void getRoomList(int roomList){

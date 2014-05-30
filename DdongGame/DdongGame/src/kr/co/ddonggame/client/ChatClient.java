@@ -199,10 +199,12 @@ public class ChatClient extends AbstractClient
           quit();
         }
       }
-    else
+    else{
+    	clientUI.display(message);
       clientUI.display("Invalid command.");
+ 
+    }
   }
-
   /**
    * This method terminates the client.
    */

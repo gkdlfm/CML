@@ -8,6 +8,8 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import android.util.Log;
+
 /**
 * The <code> AbstractClient </code> contains all the
 * methods necessary to set up the client side of a client-server
@@ -272,9 +274,8 @@ public abstract class AbstractClient implements Runnable
         // statement until something is received from the server
         
         try { // added in version 2.31
-        
           msg = input.readObject();
-
+          Log.i("exception", (String)msg);
           // Concrete subclasses do what they want with the
           // msg by implementing the following method
           if (!readyToStop) {  // Added in version 2.2
