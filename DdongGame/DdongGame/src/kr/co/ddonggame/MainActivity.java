@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import kr.co.ddonggame.client.ClientThread;
+import kr.co.ddonggame.client.UserInformation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.ddonggame.R;
 
@@ -29,6 +31,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	private EditText editID;
 	private ClientThread clientThread;
 	private String phoneNumber;
+	private UserInformation userInformation;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,6 +45,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		userInformation = UserInformation.getInstance();
 		TimerTask mTask = new TimerTask(){
 			public void run() {
 				clientThread.getClient().setMainActivity(MainActivity.this);
@@ -54,7 +58,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		
 		TelephonyManager mTelephonyMgr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
 		phoneNumber = mTelephonyMgr.getLine1Number();
-		
+		userInformation.setPhoneNumber(phoneNumber);
 		Timer timer = new Timer();
 		timer.schedule(mTask, 1000);
 		//타이머를 쓴이유는 getClient가 받아지지 않음. 클라이언트는 스레드로 돌려야하는데 스레드가 돌기전에 참조해서 nullpoint에러남.
@@ -68,15 +72,22 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	protected void onDestroy() {
 		clientThread.quit();
 	}
-
+	
 	public void onClick(View v) {
 		int btn = v.getId();
 		switch (btn) {
 		case R.id.btnJoin:
+			userInformation.setNickName(editID.getText().toString());
 			clientThread.getClient().setMainActivity(MainActivity.this);
 			clientThread.joinUser(editID.getText().toString(), phoneNumber);
 			break;
 		}
+	}
+	
+	public void nickNameError(){
+		Toast toast = Toast.makeText(this, "닉네임이 중복되었습니다. 다시 입력해주세요.", 
+				Toast.LENGTH_SHORT); 
+		toast.show(); 
 	}
 	
 	public void enterMainMenu(){

@@ -1,6 +1,7 @@
 package kr.co.ddonggame;
 
 import kr.co.ddonggame.client.ClientThread;
+import kr.co.ddonggame.client.UserInformation;
 import kr.co.ddonggame.game.RoomEnter;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +32,8 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 	private int roomList = 1;
 	private int roomEnterNumber = 0;
 
+	
+	private UserInformation userInformation;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -50,7 +53,7 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		btnRoomCreate.setOnClickListener(this);
 		btnRoomRefresh = (Button)findViewById(R.id.btnRoomRefresh);
 		btnRoomRefresh.setOnClickListener(this);
-		
+		userInformation = UserInformation.getInstance();
 		for (int i = 1; i <= 6; i++) {
 			int temp = getResources().getIdentifier("btnRoom" + i + "Enter",
 					"id", "com.example.ddonggame");
