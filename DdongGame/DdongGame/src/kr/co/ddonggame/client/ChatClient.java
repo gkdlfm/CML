@@ -179,7 +179,7 @@ public class ChatClient extends AbstractClient
 
     //If not a client-side command or is a message to be displayed
     if ((message.startsWith("#login")) 
-      || (!(message.startsWith("#"))))
+      || ((message.startsWith("#"))))
       try
       {
         sendToServer(message);
