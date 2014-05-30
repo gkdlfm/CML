@@ -102,7 +102,8 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		int roomNumber = 0;
 		switch (id) {
 		case R.id.btnRoomCreate:
-			Dialog confirm = new CustomDialog(this, "방을 생성 하시겠습니까?", true);
+			Dialog createCheckDialog = new CustomDialog(this, "방을 생성 하시겠습니까?", true);
+			createCheckDialog.show();
 			break;
 		case R.id.btnRoomRefresh:
 			break;

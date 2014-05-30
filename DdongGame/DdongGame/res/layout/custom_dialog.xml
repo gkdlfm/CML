@@ -8,25 +8,6 @@
 
     <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="0dp" >
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="1"
-            android:text="Title"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="-2dp"
         android:padding="0dp" >
@@ -48,6 +29,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
+                
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editWrap"
+                    android:orientation="horizontal">                    
+                    
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/customDialogOkBtn"
@@ -67,4 +56,5 @@
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
+
 </LinearLayout>
