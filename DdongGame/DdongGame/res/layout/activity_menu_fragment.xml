@@ -11,13 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.2" >
-        <TextView 
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="15dp"
             android:gravity="center"
             android:text="따뜻한한강물"
-            />
+            android:textSize="15dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -42,13 +42,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.2" >
+
         <Button
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:textSize="20dp"
-        android:text="방만들기" />
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="방만들기"
+            android:textSize="20dp"
+            android:id="@+id/btnCreate" />
     </LinearLayout>
-
-    
 
 </LinearLayout>
