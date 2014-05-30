@@ -3,7 +3,6 @@ package kr.co.ddonggame;
 import kr.co.ddonggame.client.ClientThread;
 import kr.co.ddonggame.custom.CustomDialog;
 import kr.co.ddonggame.game.RoomEnter;
-import android.R.integer;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -71,18 +70,28 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 	}
 
 	public void changeRoomInformation(int gameRoomNumber, String roomOpenOrClose) {
-		Log.i("gameRoomNumber", Integer.toString(gameRoomNumber));
-		Log.i("roomopenorclose", roomOpenOrClose);
-		for (int i = 1; i <= 6; i++) {
-			int temp = (gameRoomNumber - 1) * 6 + i;
-			// Log.i("gameRoom num : ", Integer.toString(temp));
-			roomTextView[i - 1].setText(Integer.toString(temp));
-			Log.i("changeRoom num : ", Integer.toString(temp));
-			char a = roomOpenOrClose.charAt(i - 1);
-			if (a == '0') {
-				btnRoom[i - 1].setEnabled(false);
-			} else {
-				btnRoom[i - 1].setEnabled(true);
+		final int gameRoomNumbertemp = gameRoomNumber;
+		new Thread(new Runnable() {
+		    @Override
+		    public void run() {    
+		        runOnUiThread(new Runnable(){
+		            @Override
+		             public void run() {
+		            	for(int i=1; i<=6; i++){
+		            		int temp = (gameRoomNumbertemp-1)*6+i;
+		            		roomTextView[i-1].setText(Integer.toString(temp));
+		            	}
+		            }
+		        });
+		    }
+		}).start();
+		for(int i=1; i<=6; i++){
+			char a = roomOpenOrClose.charAt(i-1);
+			if(a=='0'){
+				btnRoom[i-1].setEnabled(false);
+			}
+			else{
+				btnRoom[i-1].setEnabled(true);
 			}
 		}
 

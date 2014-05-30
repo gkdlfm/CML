@@ -43,11 +43,6 @@ public class ClientThread extends Thread {
 		client.handleMessage(msg);
 	}
 	
-	//게임 메뉴 진입
-	public void enterMenu(){
-		String msg = "게임메뉴진입";
-		client.handleMessage(msg);
-	}
 	
 	public int createRoom(int entryCount){
 		String msg = "#makeroom_" + entryCount;
