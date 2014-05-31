@@ -1,5 +1,8 @@
 package kr.co.ddonggame.custom;
 
+import kr.co.ddonggame.client.ClientThread;
+import kr.co.ddonggame.client.UserInformation;
+
 import com.example.ddonggame.R;
 
 import android.app.Dialog;
@@ -15,12 +18,14 @@ import android.widget.TextView;
 public class CustomDialog extends Dialog implements OnClickListener{
 	private Button okButton;
 	private Button noButton;
-	
+	private int entryCount=12;
+	private ClientThread clientThread = ClientThread.getInstance();
 	public CustomDialog(Context context, String title) {
 		super(context);
 		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.custom_dialog);		
+		
 		
 		TextView titleView = (TextView) findViewById(R.id.customDialogTitle);
 		titleView.setText(title);
@@ -54,7 +59,7 @@ public class CustomDialog extends Dialog implements OnClickListener{
 			if(i == 0 && editText[i]){
 				TextView entryCountTitle = new TextView(context);
 				entryCountTitle.setText("ÀÎ¿ø ¼ö : ");
-				editWrap.addView(entryCountTitle);			
+				editWrap.addView(entryCountTitle);
 				
 				
 			}
@@ -70,6 +75,9 @@ public class CustomDialog extends Dialog implements OnClickListener{
 	
 	public void onClick(View view){
 		if(view == okButton){
+			
+			clientThread.makeRoom(entryCount);
+			dismiss();
 		} else if (view == noButton){
 			dismiss();
 		}
