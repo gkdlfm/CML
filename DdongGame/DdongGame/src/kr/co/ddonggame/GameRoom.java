@@ -30,7 +30,7 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 	private Button btnRoomRefresh;
 	private Button btnLeft;
 	private Button btnRight;
-	
+	private TextView nickNameTextView;
 	private int roomList = 1;
 	private int roomNumber = 0;
 	
@@ -61,6 +61,9 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		btnRoomRefresh.setOnClickListener(this);
 		userInformation = UserInformation.getInstance();
 
+		nickNameTextView = (TextView)findViewById(R.id.nickNameTextView);
+		nickNameTextView.setText(userInformation.getNickName());
+		
 		for (int i = 1; i <= 6; i++) {
 			int temp = getResources().getIdentifier("btnRoom" + i + "Enter",
 					"id", "com.example.ddonggame");
