@@ -36,6 +36,8 @@ public class RoomEnter extends ActionBarActivity {
 			roomEntry[i - 1] = (TextView) findViewById(temp);
 		}
 		clientThread.getClient().setRoomEnter(this);
+		clientThread.getRoomEntry();
+		
 		// 닉네임을 보내면 방정보를 얻어온다. (현재 방에 참여하고 있는 인원)
 	}
 
@@ -51,10 +53,12 @@ public class RoomEnter extends ActionBarActivity {
 						String tmp = st.nextToken();
 						for (int i = 1; i <= 12; i++) {
 							if(!st.hasMoreTokens()){
-								break;
+								roomEntry[i-1].setText("watting...");
 							}
-							String temp = st.nextToken();
-							roomEntry[i - 1].setText(temp);
+							else{
+								String temp = st.nextToken();
+								roomEntry[i - 1].setText(temp);
+							}
 						}
 					}
 				});

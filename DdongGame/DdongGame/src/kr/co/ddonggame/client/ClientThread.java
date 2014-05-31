@@ -60,7 +60,12 @@ public class ClientThread extends Thread {
 
 	//πÊ¿‘¿Â
 	public void getRoomEnter(int roomNumber){
-		String msg = "#enterroom_"+roomNumber+"_"+userInformation.getNickName();
+		String msg = "#roomenter_"+roomNumber+"_"+userInformation.getNickName();
+		client.handleMessage(msg);
+	}
+	
+	public void getRoomEntry(){
+		String msg = "#enterroom_"+userInformation.getRoomNumber() +"_"+userInformation.getNickName();
 		client.handleMessage(msg);
 	}
 	

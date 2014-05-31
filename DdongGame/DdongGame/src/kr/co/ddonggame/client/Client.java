@@ -58,7 +58,14 @@ public class Client implements ChatIF {
 			temp = msg.nextToken();
 			roomOpenOrClose = temp;
 			gameRoom.changeRoomInformation(gameRoomNumber, roomOpenOrClose);
-		} else if (message.matches(".*#entryroom.*")) {
+		}else if(message.equals("#enter_ok")){
+			gameRoom.roomEnter();
+		}else if(message.equals("#enter_no")){
+			gameRoom.roomEnterError();
+		}else if(message.matches(".*#entryroom")){
+			roomEnter.roomEntrySetting(message);
+		}
+		else if (message.matches(".*#entryroom.*")) {
 			Log.i("test", "enter");
 			if (message.equals("#enter_no")) {
 

@@ -15,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ddonggame.R;
 
@@ -31,8 +32,7 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 	private Button btnRight;
 	
 	private int roomList = 1;
-	private int roomEnterNumber = 0;
-
+	private int roomNumber = 0;
 	
 	private UserInformation userInformation;
 	protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +108,6 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 
 	public void onClick(View v) {
 		int id = v.getId();
-		int roomNumber = 0;
 		switch (id) {
 		case R.id.btnRoomCreate:
 			Dialog createCheckDialog = new CustomDialog(this, "방을 생성 하시겠습니까?", true);
@@ -120,32 +119,26 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		case R.id.btnRoom1Enter:
 			roomNumber = Integer.parseInt(roomTextView[0].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
-			startActivity(new Intent(this, RoomEnter.class));
 			break;
 		case R.id.btnRoom2Enter:
 			roomNumber = Integer.parseInt(roomTextView[1].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
-			startActivity(new Intent(this, RoomEnter.class));
 			break;
 		case R.id.btnRoom3Enter:
 			roomNumber = Integer.parseInt(roomTextView[2].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
-			startActivity(new Intent(this, RoomEnter.class));
 			break;
 		case R.id.btnRoom4Enter:
 			roomNumber = Integer.parseInt(roomTextView[3].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
-			startActivity(new Intent(this, RoomEnter.class));
 			break;
 		case R.id.btnRoom5Enter:
 			roomNumber = Integer.parseInt(roomTextView[4].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
-			startActivity(new Intent(this, RoomEnter.class));
 			break;
 		case R.id.btnRoom6Enter:
 			roomNumber = Integer.parseInt(roomTextView[5].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
-			startActivity(new Intent(this, RoomEnter.class));
 			break;
 		case R.id.btnRoomLeft:
 			if (roomList > 1) {
@@ -162,9 +155,14 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		}
 	}
 
-	public void roomEnter(int roomEnterNumber) {
-		this.roomEnterNumber = roomEnterNumber;
+	public void roomEnter() {
+		userInformation.setRoomNumber(roomNumber);
 		startActivity(new Intent(this, RoomEnter.class));
 	}
-
+	
+	public void roomEnterError(){
+		Toast toast = Toast.makeText(this, "방인원을 초과하였습니다.", 
+				Toast.LENGTH_SHORT); 
+		toast.show(); 
+	}
 }
