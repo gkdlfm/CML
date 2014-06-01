@@ -83,6 +83,7 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 
 	public void changeRoomInformation(int gameRoomNumber, String roomOpenOrClose) {
 		final int gameRoomNumbertemp = gameRoomNumber;
+		final String roomOpenClosetemp = roomOpenOrClose;
 		new Thread(new Runnable() {
 		    @Override
 		    public void run() {    
@@ -92,19 +93,20 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		            	for(int i=1; i<=6; i++){
 		            		int temp = (gameRoomNumbertemp-1)*6+i;
 		            		roomTextView[i-1].setText(Integer.toString(temp));
+		            		char a = roomOpenClosetemp.charAt(i-1);
+		        			if(a=='0'){
+		        				btnRoom[i-1].setEnabled(false);
+		        			}
+		        			else{
+		        				btnRoom[i-1].setEnabled(true);
+		        			}
 		            	}
 		            }
 		        });
 		    }
 		}).start();
 		for(int i=1; i<=6; i++){
-			char a = roomOpenOrClose.charAt(i-1);
-			if(a=='0'){
-				btnRoom[i-1].setEnabled(false);
-			}
-			else{
-				btnRoom[i-1].setEnabled(true);
-			}
+			
 		}
 
 	}
@@ -113,8 +115,9 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		int id = v.getId();
 		switch (id) {
 		case R.id.btnRoomCreate:
-			Dialog createCheckDialog = new CustomDialog(this, "방을 생성 하시겠습니까?", true);
-			createCheckDialog.show();
+			//Dialog createCheckDialog = new CustomDialog(this, "방을 생성 하시겠습니까?", true);
+			//createCheckDialog.show();
+			clientThread.makeRoom(12);
 			break;
 		case R.id.btnRoomRefresh:
 			clientThread.getRoomList(roomList);
@@ -159,8 +162,14 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 	}
 
 	public void roomEnter() {
+		Log.i("roomEnter Method", "gogogo");
 		userInformation.setRoomNumber(roomNumber);
+		try{
 		startActivity(new Intent(this, RoomEnter.class));
+		}catch(Exception e){
+			Log.i("머징 : ", e.toString());
+		}
+		Log.i("roomEnter Method", "gogogo");
 	}
 	
 	public void roomEnterError(){

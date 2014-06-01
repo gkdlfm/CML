@@ -33,7 +33,8 @@ public class Client implements ChatIF {
 	@Override
 	public void display(String message) {
 		messageFromServer = message;
-		Log.i("Handlemessage From Server : ", message);
+		Log.i("Handlemessage From Server : ", messageFromServer);
+		
 
 		if (message.equals("#join_ok")) {
 			mainActivity.enterMainMenu();
@@ -58,7 +59,7 @@ public class Client implements ChatIF {
 			temp = msg.nextToken();
 			roomOpenOrClose = temp;
 			gameRoom.changeRoomInformation(gameRoomNumber, roomOpenOrClose);
-		}else if(message.matches(".*#makeroom")){
+		}else if(message.matches(".*#makeroom.*")){
 			StringTokenizer st = new StringTokenizer(message, "_");
 			String temp = st.nextToken();
 			temp = st.nextToken();

@@ -73,13 +73,17 @@ public class CustomDialog extends Dialog implements OnClickListener{
 		
 	}
 	
+	@Override
 	public void onClick(View view){
 		if(view == okButton){
-			
 			clientThread.makeRoom(entryCount);
+			//this.onStop();
 			dismiss();
+			//return;
 		} else if (view == noButton){
 			dismiss();
+			//this.onStop();
+			//return;
 		}
 	}
 }
