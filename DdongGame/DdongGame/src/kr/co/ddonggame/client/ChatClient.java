@@ -9,6 +9,8 @@ package kr.co.ddonggame.client;
 
 import java.io.*;
 
+import android.util.Log;
+
 /**
  * This class overrides some of the methods defined in the abstract
  * superclass in order to give more functionality to the client.
@@ -70,6 +72,7 @@ public class ChatClient extends AbstractClient
    */
   public void handleMessageFromServer(Object msg) 
   {
+	  Log.i("client Thread from server", msg.toString());
     clientUI.display(msg.toString());
   }
   

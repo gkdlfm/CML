@@ -5,14 +5,15 @@ import android.util.Log;
 public class ClientThread extends Thread {
 	private static ClientThread clientThread;
 	private Client client;
-
+	private UserInformation userInformation = UserInformation.getInstance();;
 	private ClientThread() {
 		
 	}
 
 	public static ClientThread getInstance() {
-		if (clientThread == null)
+		if (clientThread == null){
 			return clientThread = new ClientThread();
+		}
 		else
 			return clientThread;
 	}
@@ -44,9 +45,10 @@ public class ClientThread extends Thread {
 	}
 	
 	
-	public int createRoom(int entryCount){
-		String msg = "#makeroom_" + entryCount;
-		
+	public int makeRoom(int entryCount){
+		String msg = "#makeroom_" + entryCount + "_" + userInformation.getNickName();
+		Log.i("makeRoom", msg);
+		client.handleMessage(msg);
 		
 		return 0; // 만들어진 방번호 return
 	}
@@ -56,10 +58,16 @@ public class ClientThread extends Thread {
 		String msg = "#room_information_"+roomList;
 		client.handleMessage(msg);
 	}
-
+	
 	//방입장
 	public void getRoomEnter(int roomNumber){
-		String msg = "#room_enter_"+roomNumber;
+		String msg = "#roomenter_"+roomNumber+"_"+userInformation.getNickName();
+		client.handleMessage(msg);
+	}
+	
+	
+	public void getRoomEntry(){
+		String msg = "#enterroom_"+userInformation.getRoomNumber() +"_"+userInformation.getNickName();
 		client.handleMessage(msg);
 	}
 	

@@ -1,10 +1,11 @@
 package kr.co.ddonggame.custom;
 
+import kr.co.ddonggame.client.ClientThread;
+
 import com.example.ddonggame.R;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -17,15 +18,15 @@ import android.widget.TextView;
 public class CustomDialog extends Dialog implements OnClickListener {
 	private Button okButton;
 	private Button noButton;
-
+	
 	private EditText entryCountEdit;
-
+	private ClientThread clientThread = ClientThread.getInstance();
 	public CustomDialog(Context context, String title) {
 		super(context);
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.custom_dialog);
-
+		setContentView(R.layout.custom_dialog);		
+		
 		TextView titleView = (TextView) findViewById(R.id.customDialogTitle);
 		titleView.setText(title);
 
@@ -79,16 +80,18 @@ public class CustomDialog extends Dialog implements OnClickListener {
 
 	public void onClick(View view) {
 		if (view == okButton) {
-			String entryCount = (entryCountEdit.getText().toString().equals("") ? "0"
-					: entryCountEdit.getText().toString());
-			if (Integer.parseInt(entryCount) < 13
-					&& Integer.parseInt(entryCount) > 3) {
-				
+			int entryCount = (entryCountEdit.getText().toString().equals("") ? 0
+					: Integer.parseInt(entryCountEdit.getText().toString()));
+			if (entryCount < 13
+					&& entryCount > 3) {
+				clientThread.makeRoom(entryCount);				
 			} else {
 				
 			}
 		} else if (view == noButton) {
 			dismiss();
+			//this.onStop();
+			//return;
 		}
 	}
 }

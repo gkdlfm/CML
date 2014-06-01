@@ -3,6 +3,7 @@ package kr.co.ddonggame.client;
 public class UserInformation {
 	private static UserInformation userInformation;
 	private String nickName;
+	private int roomNumber;
 	private String phoneNumber;
 	private UserInformation(){
 		
@@ -33,6 +34,16 @@ public class UserInformation {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+
+	public int getRoomNumber() {
+		return roomNumber;
+	}
+
+
+	public void setRoomNumber(int roomNumber) {
+		this.roomNumber = roomNumber;
 	}
 	
 }
