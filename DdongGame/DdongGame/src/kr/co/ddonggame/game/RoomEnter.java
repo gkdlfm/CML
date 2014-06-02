@@ -7,6 +7,7 @@ import kr.co.ddonggame.client.ClientThread;
 import kr.co.ddonggame.client.UserInformation;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -19,8 +20,7 @@ public class RoomEnter extends ActionBarActivity {
 	private ClientThread clientThread;
 	private UserInformation userInformation;
 	private TextView[] roomEntry = new TextView[12];
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,13 +37,13 @@ public class RoomEnter extends ActionBarActivity {
 		}
 		clientThread.getClient().setRoomEnter(this);
 		clientThread.getRoomEntry();
-		
+
 		// 닉네임을 보내면 방정보를 얻어온다. (현재 방에 참여하고 있는 인원)
 	}
 
 	public void roomEntrySetting(String entry) {
 		final StringTokenizer st = new StringTokenizer(entry, "_");
-		
+		Log.i("roomentry : ", entry);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -52,10 +52,9 @@ public class RoomEnter extends ActionBarActivity {
 					public void run() {
 						String tmp = st.nextToken();
 						for (int i = 1; i <= 12; i++) {
-							if(!st.hasMoreTokens()){
-								roomEntry[i-1].setText("watting...");
-							}
-							else{
+							if (!st.hasMoreTokens()) {
+								roomEntry[i - 1].setText("watting...");
+							} else {
 								String temp = st.nextToken();
 								roomEntry[i - 1].setText(temp);
 							}
@@ -66,10 +65,13 @@ public class RoomEnter extends ActionBarActivity {
 		}).start();
 
 	}
-	protected void onDestroy() {
+
+	@Override
+	public void onDestroy() {
 		clientThread.roomExit();
+		super.onDestroy();
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
