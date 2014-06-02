@@ -63,6 +63,7 @@ public class Client implements ChatIF {
 			StringTokenizer st = new StringTokenizer(message, "_");
 			String temp = st.nextToken();
 			temp = st.nextToken();
+			Log.i("make roomNumber", temp);
 			userInformation.setRoomNumber(Integer.parseInt(temp));
 			gameRoom.roomEnter();
 		}
@@ -78,7 +79,7 @@ public class Client implements ChatIF {
 			if (message.equals("#enter_no")) {
 
 			} else {
-				roomEnter.roomEntrySetting(message);
+				roomEnter.roomEntrySetting(message);	
 			}
 		}
 	}

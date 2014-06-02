@@ -125,26 +125,32 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		case R.id.btnRoom1Enter:
 			roomNumber = Integer.parseInt(roomTextView[0].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
+			userInformation.setRoomNumber(roomNumber);
 			break;
 		case R.id.btnRoom2Enter:
 			roomNumber = Integer.parseInt(roomTextView[1].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
+			userInformation.setRoomNumber(roomNumber);
 			break;
 		case R.id.btnRoom3Enter:
 			roomNumber = Integer.parseInt(roomTextView[2].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
+			userInformation.setRoomNumber(roomNumber);
 			break;
 		case R.id.btnRoom4Enter:
 			roomNumber = Integer.parseInt(roomTextView[3].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
+			userInformation.setRoomNumber(roomNumber);
 			break;
 		case R.id.btnRoom5Enter:
 			roomNumber = Integer.parseInt(roomTextView[4].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
+			userInformation.setRoomNumber(roomNumber);
 			break;
 		case R.id.btnRoom6Enter:
 			roomNumber = Integer.parseInt(roomTextView[5].getText().toString());
 			clientThread.getRoomEnter(roomNumber);
+			userInformation.setRoomNumber(roomNumber);
 			break;
 		case R.id.btnRoomLeft:
 			if (roomList > 1) {
@@ -163,7 +169,6 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 
 	public void roomEnter() {
 		Log.i("roomEnter Method", "gogogo");
-		userInformation.setRoomNumber(roomNumber);
 		try{
 		startActivity(new Intent(this, RoomEnter.class));
 		}catch(Exception e){
