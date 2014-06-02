@@ -2,25 +2,28 @@ package kr.co.ddonggame.game;
 
 import java.util.StringTokenizer;
 
-import kr.co.ddonggame.GameRoom;
 import kr.co.ddonggame.client.ClientThread;
 import kr.co.ddonggame.client.UserInformation;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ddonggame.R;
 
-public class RoomEnter extends ActionBarActivity {
+public class RoomEnter extends ActionBarActivity implements OnClickListener{
 	private ClientThread clientThread;
 	private UserInformation userInformation;
 	private TextView[] roomEntry = new TextView[12];
-
+	private Button btnReadyOrStart;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,6 +33,8 @@ public class RoomEnter extends ActionBarActivity {
 		setContentView(R.layout.activity_roomenter);
 		clientThread = ClientThread.getInstance();
 		userInformation = UserInformation.getInstance();
+		btnReadyOrStart = (Button)findViewById(R.id.btnReadyOrStart);
+		btnReadyOrStart.setOnClickListener(this);
 		for (int i = 1; i <= 12; i++) {
 			int temp = getResources().getIdentifier("roomEntry" + i, "id",
 					"com.example.ddonggame");
@@ -40,7 +45,24 @@ public class RoomEnter extends ActionBarActivity {
 
 		// 닉네임을 보내면 방정보를 얻어온다. (현재 방에 참여하고 있는 인원)
 	}
-
+	
+	public void gameStart(){
+		startActivity(new Intent(this, GameActivity.class));
+	}
+	
+	public void onClick(View v){
+		int getid = v.getId();
+		switch (getid) {
+		case R.id.btnReadyOrStart:
+			String temp = btnReadyOrStart.getText().toString();
+			clientThread.readyOrStart(temp);
+			break;
+		default:
+			break;
+		}
+		
+	}
+	
 	public void roomEntrySetting(String entry) {
 		final StringTokenizer st = new StringTokenizer(entry, "_");
 		Log.i("roomentry : ", entry);
@@ -56,6 +78,9 @@ public class RoomEnter extends ActionBarActivity {
 								roomEntry[i - 1].setText("watting...");
 							} else {
 								String temp = st.nextToken();
+								if(i==1 && temp.equals(userInformation.getNickName())){
+									btnReadyOrStart.setText("start");
+								}
 								roomEntry[i - 1].setText(temp);
 							}
 						}
