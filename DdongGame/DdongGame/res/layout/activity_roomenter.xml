@@ -186,6 +186,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.5" >
             <Button
+                android:id="@+id/btnReadyOrStart"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:text="준비하기"

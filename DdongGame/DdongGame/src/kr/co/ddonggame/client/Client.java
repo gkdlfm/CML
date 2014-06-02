@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 
 import kr.co.ddonggame.GameRoom;
 import kr.co.ddonggame.MainActivity;
+import kr.co.ddonggame.game.GameActivity;
 import kr.co.ddonggame.game.RoomEnter;
 import android.util.Log;
 
@@ -20,6 +21,7 @@ public class Client implements ChatIF {
 	private MainActivity mainActivity;
 	private GameRoom gameRoom;
 	private RoomEnter roomEnter;
+	private GameActivity gameActivity;
 	private UserInformation userInformation;
 	public Client() {
 		client = new ChatClient(host, port, login, this);
@@ -71,16 +73,12 @@ public class Client implements ChatIF {
 			gameRoom.roomEnter();
 		}else if(message.equals("#enter_no")){
 			gameRoom.roomEnterError();
-		}else if(message.matches(".*#entryroom")){
+		}else if(message.matches(".*#entryroom.*")){
 			roomEnter.roomEntrySetting(message);
-		}
-		else if (message.matches(".*#entryroom.*")) {
-			Log.i("test", "enter");
-			if (message.equals("#enter_no")) {
-
-			} else {
-				roomEnter.roomEntrySetting(message);	
-			}
+		}else if(message.equals("#gamestart")){
+			roomEnter.gameStart();
+		}else if(message.matches(".*#init.*")){
+			gameActivity.init(message);
 		}
 	}
 
@@ -93,5 +91,13 @@ public class Client implements ChatIF {
 	}
 	public void setRoomEnter(RoomEnter roomEnter){
 		this.roomEnter = roomEnter;
+	}
+
+	public GameActivity getGameActivity() {
+		return gameActivity;
+	}
+
+	public void setGameActivity(GameActivity gameActivity) {
+		this.gameActivity = gameActivity;
 	}
 }

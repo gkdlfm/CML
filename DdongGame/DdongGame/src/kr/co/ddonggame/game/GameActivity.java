@@ -1,7 +1,10 @@
 package kr.co.ddonggame.game;
 
 import java.util.Random;
+import java.util.StringTokenizer;
 
+import kr.co.ddonggame.client.ClientThread;
+import kr.co.ddonggame.client.UserInformation;
 import kr.co.ddonggame.custom.CustomDialog;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -27,11 +30,12 @@ import com.example.ddonggame.R;
 public class GameActivity extends ActionBarActivity implements OnClickListener {
 
 	private ImageView firstCard, secondCard, thirdCard, fourthCard;
-	private Bitmap hwatooDeck[][] = new Bitmap[12][4];
+	private Bitmap hwatooDeck[] = new Bitmap[4];
 	private Animation cardDownAnimation;
 	private int deck[][] = new int[12][4];
 	private int doubleClick[] = new int[4];
-	
+	private ClientThread clientThread = ClientThread.getInstance();
+	private UserInformation userInformation = UserInformation.getInstance();
 	private int originCardTop;
 
 	@Override
@@ -53,14 +57,17 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		// imageView의 id값들을 조사해서 같은 월이 4장인지 판단해주는 것.
 		// int temp = R.drawable.a1_1;
 		ran(12);
-		for (int j = 0; j < 4; j++) {
+		clientThread.getClient().setGameActivity(this);
+		clientThread.getInit();
+		
+		/*for (int j = 0; j < 4; j++) {
 			int wol = deck[0][j] / 100;
 			int il = deck[0][j] - (wol * 100);
 			int temp = getResources().getIdentifier("a" + wol + "_" + il,
 					"drawable", "com.example.ddonggame");
 			hwatooDeck[0][j] = BitmapFactory.decodeResource(getResources(),
 					temp);
-		}
+		}*/
 		firstCard = (ImageView) findViewById(R.id.firstCard);
 		secondCard = (ImageView) findViewById(R.id.secondCard);
 		thirdCard = (ImageView) findViewById(R.id.thirdCard);
@@ -79,7 +86,33 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		
 		doubleClickInit();
 	}
-
+	
+	public void init(String msg){
+		StringTokenizer st = new StringTokenizer(msg, "_");
+		String temp = st.nextToken();
+		int i=0;
+		while(st.hasMoreTokens()){
+			int deck = Integer.parseInt(st.nextToken());
+			int wol = deck/100;
+			int il = deck-(wol*100);
+			int tmp = getResources().getIdentifier("a" + wol + "_" + il,
+					"drawable", "com.example.ddonggame");
+			hwatooDeck[i++] = BitmapFactory.decodeResource(getResources(),
+					tmp);
+			/*new Thread(new Runnable() {
+				@Override
+				public void run() {
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							
+						}
+					});
+				}
+			}).start();*/
+		}
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -121,19 +154,19 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		int id = v.getId();
 		switch (id) {
 		case R.id.firstCard:
-			firstCard.setImageBitmap(hwatooDeck[0][0]);
+			firstCard.setImageBitmap(hwatooDeck[0]);
 			doubleClick(1);
 			break;
 		case R.id.secondCard:
-			secondCard.setImageBitmap(hwatooDeck[0][1]);
+			secondCard.setImageBitmap(hwatooDeck[1]);
 			doubleClick(2);
 			break;
 		case R.id.thirdCard:
-			thirdCard.setImageBitmap(hwatooDeck[0][2]);
+			thirdCard.setImageBitmap(hwatooDeck[2]);
 			doubleClick(3);
 			break;
 		case R.id.fourthCard:
-			fourthCard.setImageBitmap(hwatooDeck[0][3]);
+			fourthCard.setImageBitmap(hwatooDeck[3]);
 			doubleClick(4);
 			break;
 		default:
@@ -224,6 +257,8 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 			}
 			
 			deck[user][count[user]] = (i + 1) * 100 + (j + 1);
+			
+			
 			count[user]++;
 			j++;
 			
@@ -231,9 +266,6 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 				j = 0;
 				i++;
 			}
-			
-			//Log.i("test i : ", Integer.toString(i));
-			//Log.i("test j : ", Integer.toString(j));
 		}
 	}
 

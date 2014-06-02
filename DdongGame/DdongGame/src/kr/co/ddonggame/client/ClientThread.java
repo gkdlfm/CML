@@ -40,7 +40,7 @@ public class ClientThread extends Thread {
 	
 	//Á¾·á
 	public void quit(){
-		String msg = "#quit";
+		String msg = "#quit_" + userInformation.getNickName();
 		client.handleMessage(msg);
 	}
 	
@@ -76,6 +76,15 @@ public class ClientThread extends Thread {
 		client.handleMessage(msg);
 	}
 	
+	public void readyOrStart(String command){
+		String msg = "#game"+command+"_"+userInformation.getRoomNumber()+"_"+userInformation.getNickName();
+		client.handleMessage(msg);
+	}
+	
+	public void getInit(){
+		String msg = "#init_"+userInformation.getRoomNumber();
+		client.handleMessage(msg);
+	}
 	public Client getClient() {
 		return client;
 	}
