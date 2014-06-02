@@ -115,9 +115,9 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		int id = v.getId();
 		switch (id) {
 		case R.id.btnRoomCreate:
-			//Dialog createCheckDialog = new CustomDialog(this, "방을 생성 하시겠습니까?", true);
-			//createCheckDialog.show();
-			clientThread.makeRoom(12);
+			Dialog createCheckDialog = new CustomDialog(this, "방을 생성 하시겠습니까?", true);
+			createCheckDialog.show();
+			//clientThread.makeRoom(12);
 			break;
 		case R.id.btnRoomRefresh:
 			clientThread.getRoomList(roomList);
