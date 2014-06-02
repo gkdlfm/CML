@@ -71,6 +71,11 @@ public class ClientThread extends Thread {
 		client.handleMessage(msg);
 	}
 	
+	public void roomExit(){
+		String msg = "#roomexit_"+userInformation.getRoomNumber() +"_"+userInformation.getNickName();
+		client.handleMessage(msg);
+	}
+	
 	public Client getClient() {
 		return client;
 	}

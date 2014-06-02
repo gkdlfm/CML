@@ -66,6 +66,9 @@ public class RoomEnter extends ActionBarActivity {
 		}).start();
 
 	}
+	protected void onDestroy() {
+		clientThread.roomExit();
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

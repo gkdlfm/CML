@@ -78,7 +78,7 @@ public class Client implements ChatIF {
 			if (message.equals("#enter_no")) {
 
 			} else {
-				roomEnter.roomEntrySetting(message);
+				roomEnter.roomEntrySetting(message);	
 			}
 		}
 	}
