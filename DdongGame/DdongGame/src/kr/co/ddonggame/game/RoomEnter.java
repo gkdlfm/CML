@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.example.ddonggame.R;
 
 public class RoomEnter extends ActionBarActivity implements OnClickListener{
-	private ClientThread clientThread;
+	private ClientThread clientThread = ClientThread.getInstance();
 	private UserInformation userInformation;
 	private TextView[] roomEntry = new TextView[12];
 	private Button btnReadyOrStart;
@@ -31,7 +31,7 @@ public class RoomEnter extends ActionBarActivity implements OnClickListener{
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_roomenter);
-		clientThread = ClientThread.getInstance();
+		
 		userInformation = UserInformation.getInstance();
 		btnReadyOrStart = (Button)findViewById(R.id.btnReadyOrStart);
 		btnReadyOrStart.setOnClickListener(this);
@@ -41,6 +41,7 @@ public class RoomEnter extends ActionBarActivity implements OnClickListener{
 			roomEntry[i - 1] = (TextView) findViewById(temp);
 		}
 		clientThread.getClient().setRoomEnter(this);
+		Log.i("test", "what??");
 		clientThread.getRoomEntry();
 
 		// 닉네임을 보내면 방정보를 얻어온다. (현재 방에 참여하고 있는 인원)

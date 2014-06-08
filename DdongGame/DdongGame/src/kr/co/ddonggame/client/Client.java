@@ -79,6 +79,12 @@ public class Client implements ChatIF {
 			roomEnter.gameStart();
 		}else if(message.matches(".*#init.*")){
 			gameActivity.init(message);
+		}else if(message.matches(".*nextturn.*")){
+			gameActivity.chageCard(message);
+		}else if(message.equals("#gameend")){
+			gameActivity.gameEnd("");
+		}else if(message.matches(".*gameend.*")){
+			gameActivity.gameEnd(message);
 		}
 	}
 
@@ -90,6 +96,7 @@ public class Client implements ChatIF {
 		this.mainActivity = mainActivity;
 	}
 	public void setRoomEnter(RoomEnter roomEnter){
+		Log.i("roomenter", "??");
 		this.roomEnter = roomEnter;
 	}
 

@@ -85,6 +85,23 @@ public class ClientThread extends Thread {
 		String msg = "#init_"+userInformation.getRoomNumber();
 		client.handleMessage(msg);
 	}
+	
+	public void nextTurn(String msg){
+		client.handleMessage(msg);
+	}
+	
+	//public void game
+	
+	public void gameEnd(){
+		String msg = "#gameend_"+userInformation.getRoomNumber()+"_"+userInformation.getNickName();
+		client.handleMessage(msg);
+	}
+	
+	public void gameAbnormalEnd(){
+		String msg = "#gameabnormalend_"+userInformation.getRoomNumber();
+		client.handleMessage(msg);
+	}
+	
 	public Client getClient() {
 		return client;
 	}

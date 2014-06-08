@@ -21,6 +21,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/btnRoomLeft"
+                android:background="@drawable/leftbutton"
                 ></Button>
         </LinearLayout>
 
@@ -133,6 +134,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/btnRoomRight"
+                android:background="@drawable/rightbutton"
                 ></Button>
     </LinearLayout>
 
