@@ -89,7 +89,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		confirm = new CustomDialog(this, "이 패를 선택하시겠습니까?");
 		confirm.setGameActivity(this);
 		soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-		sound = soundPool.load(this, R.raw.piano4, 1);
+		
 	}
 
 	public void init(String msg) {
@@ -187,6 +187,12 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		}
 		if (temp.equals(userInformation.getNickName())) {
 			// 똥이라서 끝남.
+			Random rand = new Random();
+			int soundInt =  getResources().getIdentifier(Integer.toString(rand.nextInt(4)+1), "raw","com.example.ddonggame");
+					//rand.nextInt(4)+1;
+		
+			
+			sound = soundPool.load(this, R.raw.piano4, 1);
 			soundPool.play(sound, 1, 1, 0, 0, 1);
 		}
 		finish();
