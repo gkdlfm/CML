@@ -145,6 +145,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 								}
 								selectCard(10);
 								checkDdong();
+								doubleClickInit(1, 5);
 							}
 						}
 					}
