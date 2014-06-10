@@ -181,6 +181,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 	public void gameEnd(String msg) {
 		String temp = msg.split("_")[1];
 		// 소리추가;
+		Log.i("test", temp);
 		if (temp.equals("#gameabnormalend")) {
 			abnormalCheck = 2;
 			// 비정상적종료
@@ -188,7 +189,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		if (temp.equals(userInformation.getNickName())) {
 			// 똥이라서 끝남.
 			Random rand = new Random();
-			int soundInt =  getResources().getIdentifier("ddong"+Integer.toString(rand.nextInt(4)+1), "raw","com.example.ddonggame");
+			int soundInt =  getResources().getIdentifier("ddong_"+Integer.toString(rand.nextInt(4)+1), "raw","com.example.ddonggame");
 					//rand.nextInt(4)+1;
 		
 			
