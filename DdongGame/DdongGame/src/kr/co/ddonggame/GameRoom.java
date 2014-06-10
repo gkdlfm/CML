@@ -33,8 +33,9 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 	private TextView nickNameTextView;
 	private int roomList = 1;
 	private int roomNumber = 0;
-	
+
 	private UserInformation userInformation;
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -54,16 +55,16 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		btnLeft.setOnClickListener(this);
 		btnRight = (Button) findViewById(R.id.btnRoomRight);
 		btnRight.setOnClickListener(this);
-		
-		btnRoomCreate = (Button)findViewById(R.id.btnRoomCreate);
+
+		btnRoomCreate = (Button) findViewById(R.id.btnRoomCreate);
 		btnRoomCreate.setOnClickListener(this);
-		btnRoomRefresh = (Button)findViewById(R.id.btnRoomRefresh);
+		btnRoomRefresh = (Button) findViewById(R.id.btnRoomRefresh);
 		btnRoomRefresh.setOnClickListener(this);
 		userInformation = UserInformation.getInstance();
 
-		nickNameTextView = (TextView)findViewById(R.id.nickNameTextView);
+		nickNameTextView = (TextView) findViewById(R.id.nickNameTextView);
 		nickNameTextView.setText(userInformation.getNickName());
-		
+
 		for (int i = 1; i <= 6; i++) {
 			int temp = getResources().getIdentifier("btnRoom" + i + "Enter",
 					"id", "com.example.ddonggame");
@@ -85,28 +86,27 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		final int gameRoomNumbertemp = gameRoomNumber;
 		final String roomOpenClosetemp = roomOpenOrClose;
 		new Thread(new Runnable() {
-		    @Override
-		    public void run() {    
-		        runOnUiThread(new Runnable(){
-		            @Override
-		             public void run() {
-		            	for(int i=1; i<=6; i++){
-		            		int temp = (gameRoomNumbertemp-1)*6+i;
-		            		roomTextView[i-1].setText(Integer.toString(temp));
-		            		char a = roomOpenClosetemp.charAt(i-1);
-		        			if(a=='0'){
-		        				btnRoom[i-1].setEnabled(false);
-		        			}
-		        			else{
-		        				btnRoom[i-1].setEnabled(true);
-		        			}
-		            	}
-		            }
-		        });
-		    }
+			@Override
+			public void run() {
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						for (int i = 1; i <= 6; i++) {
+							int temp = (gameRoomNumbertemp - 1) * 6 + i;
+							roomTextView[i - 1].setText(Integer.toString(temp));
+							char a = roomOpenClosetemp.charAt(i - 1);
+							if (a == '0') {
+								btnRoom[i - 1].setEnabled(false);
+							} else {
+								btnRoom[i - 1].setEnabled(true);
+							}
+						}
+					}
+				});
+			}
 		}).start();
-		for(int i=1; i<=6; i++){
-			
+		for (int i = 1; i <= 6; i++) {
+
 		}
 
 	}
@@ -167,17 +167,16 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 
 	public void roomEnter() {
 		Log.i("roomEnter Method", "gogogo");
-		try{
-		startActivity(new Intent(this, RoomEnter.class));
-		}catch(Exception e){
+		try {
+			startActivity(new Intent(this, RoomEnter.class));
+		} catch (Exception e) {
 			Log.i("머징 : ", e.toString());
 		}
 		Log.i("roomEnter Method", "gogogo");
 	}
-	
-	public void roomEnterError(){
-		Toast toast = Toast.makeText(this, "방인원을 초과하였습니다.", 
-				Toast.LENGTH_SHORT); 
-		toast.show(); 
+
+	public void roomEnterError() {
+		Toast toast = Toast.makeText(this, "방인원을 초과하였습니다.", Toast.LENGTH_SHORT);
+		toast.show();
 	}
 }

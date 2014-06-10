@@ -32,6 +32,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	private ClientThread clientThread;
 	private String phoneNumber;
 	private UserInformation userInformation;
+	static int check = 1;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,13 +42,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main);
-		
+
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 		userInformation = UserInformation.getInstance();
-		TimerTask mTask = new TimerTask(){
+		TimerTask mTask = new TimerTask() {
 			public void run() {
 				clientThread.getClient().setMainActivity(MainActivity.this);
 				clientThread.joinCheck(phoneNumber);
@@ -55,28 +57,36 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		};
 		clientThread = ClientThread.getInstance();
 		clientThread.start();
-		
-		TelephonyManager mTelephonyMgr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+
+		TelephonyManager mTelephonyMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 		phoneNumber = mTelephonyMgr.getLine1Number();
 		userInformation.setPhoneNumber(phoneNumber);
 		Timer timer = new Timer();
 		timer.schedule(mTask, 2000);
-		//타이머를 쓴이유는 getClient가 받아지지 않음. 클라이언트는 스레드로 돌려야하는데 스레드가 돌기전에 참조해서 nullpoint에러남.
-		
+		// 타이머를 쓴이유는 getClient가 받아지지 않음. 클라이언트는 스레드로 돌려야하는데 스레드가 돌기전에 참조해서
+		// nullpoint에러남.
+
 		btnJoin = (Button) this.findViewById(R.id.btnJoin);
 		btnJoin.setOnClickListener(this);
 		editID = (EditText) this.findViewById(R.id.editID);
-		
+
 	}
 
 	protected void onDestroy() {
 		super.onDestroy();
 		clientThread.quit();
 	}
-	protected void onResume(){
+
+	protected void onResume() {
 		super.onResume();
-		finish();
+		// finish();
 	}
+	
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+	}
+
 	public void onClick(View v) {
 		int btn = v.getId();
 		switch (btn) {
@@ -87,22 +97,15 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 			break;
 		}
 	}
-	
-	public void nickNameError(){
-		Toast toast = Toast.makeText(this, "닉네임이 중복되었습니다. 다시 입력해주세요.", 
-				Toast.LENGTH_SHORT); 
-		toast.show(); 
+
+	public void nickNameError() {
+		Toast toast = Toast.makeText(this, "닉네임이 중복되었습니다. 다시 입력해주세요.",
+				Toast.LENGTH_SHORT);
+		toast.show();
 	}
-	
-	public void enterMainMenu(){
+
+	public void enterMainMenu() {
 		startActivity(new Intent(this, MainMenu.class));
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
 	}
 
 	@Override

@@ -46,6 +46,13 @@
             android:label="@string/title_activity_game"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name="com.example.ddonggame.OptionActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Dialog"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
     </application>
 
 </manifest>
