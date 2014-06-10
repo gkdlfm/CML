@@ -44,8 +44,10 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 	private int[] checkInit = new int[4];
 	private CustomDialog confirm;
 	private SoundPool soundPool;
-	private int sound=0;
-	private int abnormalCheck=0;
+	private int sound = 0;
+	private int abnormalCheck = 0;
+	private int doubleClickCheck = 0;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,7 +66,6 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		// 이후 같은 카드가 4개가 되면 똥이라는 걸 확인하기 위해 Method추가.[ boolean DDongCheck() ]
 		// imageView의 id값들을 조사해서 같은 월이 4장인지 판단해주는 것.
 		// int temp = R.drawable.a1_1;
-		ran(12);
 		clientThread.getClient().setGameActivity(this);
 		clientThread.getInit();
 
@@ -111,6 +112,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 
 	public void chageCard(String msg) {
 		final String stringTmp = msg;
+		doubleClickCheck=0;
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -130,7 +132,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 								hwatooDeck[i] = BitmapFactory.decodeResource(
 										getResources(), tmp);
 								hwatooDeckInt[i] = getCard;
-								switch(i){
+								switch (i) {
 								case 0:
 									firstCard.setImageBitmap(hwatooDeck[0]);
 									break;
@@ -143,6 +145,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 								}
 								selectCard(10);
 								checkDdong();
+								doubleClickInit(1, 5);
 							}
 						}
 					}
@@ -150,44 +153,46 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 			}
 		}).start();
 	}
-	
-	protected void onDestroy(){
+
+	protected void onDestroy() {
 		super.onDestroy();
-		if(abnormalCheck == 1){
-			
-		}else if(abnormalCheck == 2){
-			
-		}
-		else{
+		if (abnormalCheck == 1) {
+
+		} else if (abnormalCheck == 2) {
+
+		} else {// 기본값 0이면 서버에게 메시지를 보내고 모든 사용자들의 게임을 종료
 			clientThread.gameAbnormalEnd();
 		}
 	}
-	
-	public void checkDdong(){
-		for(int i=1; i<4; i++){
-			if(hwatooDeckInt[0]/100 == (int)(hwatooDeckInt[i]/100)){
+
+	public void checkDdong() {
+		for (int i = 1; i < 4; i++) {
+			if (hwatooDeckInt[0] / 100 == (int) (hwatooDeckInt[i] / 100)) {
 				continue;
-			}
-			else{
+			} else {
 				return;
 			}
 		}
 		abnormalCheck = 1;
+		// 1이면 똥이라 끝남
 		clientThread.gameEnd();
-		//return true;
+		// return true;
 	}
-	
-	public void gameEnd(String msg){
+
+	public void gameEnd(String msg) {
 		String temp = msg.split("_")[1];
-		//소리추가;
-		if(temp.equals("")){
+		// 소리추가;
+		if (temp.equals("#gameabnormalend")) {
 			abnormalCheck = 2;
+			// 비정상적종료
 		}
-		if(temp.equals(userInformation.getNickName())){
+		if (temp.equals(userInformation.getNickName())) {
+			// 똥이라서 끝남.
 			soundPool.play(sound, 1, 1, 0, 0, 1);
 		}
 		finish();
 	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -230,32 +235,32 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		switch (id) {
 		case R.id.firstCard:
 			firstCard.setImageBitmap(hwatooDeck[0]);
-			checkInit[0]=1;
+			checkInit[0] = 1;
 			doubleClick(1);
 			break;
 		case R.id.secondCard:
 			secondCard.setImageBitmap(hwatooDeck[1]);
-			checkInit[1]=1;
+			checkInit[1] = 1;
 			doubleClick(2);
 			break;
 		case R.id.thirdCard:
 			thirdCard.setImageBitmap(hwatooDeck[2]);
-			checkInit[2]=1;
+			checkInit[2] = 1;
 			doubleClick(3);
 			break;
 		case R.id.fourthCard:
 			fourthCard.setImageBitmap(hwatooDeck[3]);
-			checkInit[3]=1;
+			checkInit[3] = 1;
 			doubleClick(4);
 			break;
 		default:
 			break;
 		}
-		for(int i=0; i<4; i++){
-			if(checkInit[i]!=1){
+		for (int i = 0; i < 4; i++) {
+			if (checkInit[i] != 1) {
 				break;
 			}
-			if(i==3)
+			if (i == 3)
 				checkDdong();
 		}
 	}
@@ -263,17 +268,24 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 	@SuppressLint("NewApi")
 	void doubleClick(int cardNum) {
 		doubleClick[cardNum - 1]++;
-
-		if (doubleClick[cardNum - 1] == 1) {
-			return;
-		} else if (doubleClick[cardNum - 1] == 2) {
-			selectCard(cardNum);
-		} else if (doubleClick[cardNum - 1] == 3) {
-			// CustomDialog cs = new CustomDialog(this, "dd");
-			//confirm.setTurnOverCard(hwatooDeckInt[cardNum - 1]);
-			//confirm.show();
-			String msg = "#nextturn_"+userInformation.getRoomNumber()+"_"+userInformation.getNickName()+"_"+hwatooDeckInt[cardNum - 1];
-			clientThread.nextTurn(msg);
+		if (doubleClickCheck == 0) {
+			if (doubleClick[cardNum - 1] == 1) {
+				return;
+			} else if (doubleClick[cardNum - 1] == 2) {
+				selectCard(cardNum);
+			} else if (doubleClick[cardNum - 1] == 3) {
+				// CustomDialog cs = new CustomDialog(this, "dd");
+				// confirm.setTurnOverCard(hwatooDeckInt[cardNum - 1]);
+				// confirm.show();
+				String msg = "#nextturn_" + userInformation.getRoomNumber()
+						+ "_" + userInformation.getNickName() + "_"
+						+ hwatooDeckInt[cardNum - 1];
+				clientThread.nextTurn(msg);
+				doubleClickCheck = 1;
+			}
+		}
+		else{
+			
 		}
 	}
 
@@ -308,7 +320,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 			firstCard.setY(originCardTop);
 			secondCard.setY(originCardTop);
 			thirdCard.setY(originCardTop);
-		}else{
+		} else {
 			fourthCard.setY(originCardTop);
 			firstCard.setY(originCardTop);
 			secondCard.setY(originCardTop);
@@ -330,7 +342,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 	}
 
 	// 서버가 처음 카드를 분배하는 방법 - 12대신 게임에 참여하는 user의 숫자를 변수로 대입하면됨
-	private void ran(int numberOfUser) {
+	/*private void ran(int numberOfUser) {
 
 		Random rand = new Random();
 		int i = 0, j = 0;
@@ -360,6 +372,6 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 				i++;
 			}
 		}
-	}
+	}*/
 
 }

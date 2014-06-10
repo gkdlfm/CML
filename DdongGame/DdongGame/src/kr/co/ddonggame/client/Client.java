@@ -81,9 +81,14 @@ public class Client implements ChatIF {
 			gameActivity.init(message);
 		}else if(message.matches(".*nextturn.*")){
 			gameActivity.chageCard(message);
-		}else if(message.equals("#gameend")){
-			gameActivity.gameEnd("");
-		}else if(message.matches(".*gameend.*")){
+		}else if(message.matches(".*#gameabnormalend.*")){
+			String temp = message.split("_")[1];
+			if(temp.equals(userInformation.getNickName())){
+				
+			}
+			else
+				gameActivity.gameEnd(message);
+		}else if(message.matches(".*#gameend.*")){
 			gameActivity.gameEnd(message);
 		}
 	}
