@@ -1,6 +1,7 @@
 package kr.co.ddonggame;
 
 import kr.co.ddonggame.client.ClientThread;
+import kr.co.ddonggame.client.UserInformation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.example.ddonggame.GameMethodActivity;
 import com.example.ddonggame.OptionActivity;
 import com.example.ddonggame.R;
 
@@ -23,8 +25,8 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 	private Button btnGameMethod;
 	private Button btnGameOption;
 	private Button btnGameExit;
-	private ClientThread clientThread;
-
+	private ClientThread clientThread = ClientThread.getInstance();
+	private UserInformation userInformation = UserInformation.getInstance();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,7 +42,8 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 		btnGameMethod.setOnClickListener(this);
 		btnGameOption.setOnClickListener(this);
 		btnGameExit.setOnClickListener(this);
-
+		clientThread.typeGet();
+		
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -56,6 +59,7 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 			startActivity(new Intent(this, GameRoom.class));
 			break;
 		case R.id.btnGameMethod:
+			startActivity(new Intent(this, GameMethodActivity.class));
 			break;
 		case R.id.btnGameOption:
 			Intent optionDialog = new Intent(this, OptionActivity.class);

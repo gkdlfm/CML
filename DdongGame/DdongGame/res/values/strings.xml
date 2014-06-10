@@ -9,5 +9,6 @@
     <string name="title_activity_game_room">GameRoom</string>
     <string name="title_activity_custom_dialog_acitivty">CustomDialogAcitivty</string>
     <string name="title_activity_option">OptionActivity</string>
+    <string name="title_activity_game_method">GameMethodActivity</string>
 
 </resources>

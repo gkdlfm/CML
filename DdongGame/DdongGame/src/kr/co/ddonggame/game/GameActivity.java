@@ -47,7 +47,6 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 	private int sound = 0;
 	private int abnormalCheck = 0;
 	private int doubleClickCheck = 0;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -102,7 +101,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 			int deck = Integer.parseInt(st.nextToken());
 			int wol = deck / 100;
 			int il = deck - (wol * 100);
-			int tmp = getResources().getIdentifier("a" + wol + "_" + il,
+			int tmp = getResources().getIdentifier(userInformation.getType() + wol + "_" + il,
 					"drawable", "com.example.ddonggame");
 			hwatooDeckInt[i] = deck;
 			hwatooDeck[i++] = BitmapFactory.decodeResource(getResources(), tmp);
@@ -127,7 +126,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 								int wol = getCard / 100;
 								int il = getCard - (wol * 100);
 								int tmp = getResources().getIdentifier(
-										"a" + wol + "_" + il, "drawable",
+										userInformation.getType() + wol + "_" + il, "drawable",
 										"com.example.ddonggame");
 								hwatooDeck[i] = BitmapFactory.decodeResource(
 										getResources(), tmp);

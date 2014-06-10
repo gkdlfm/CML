@@ -1,5 +1,7 @@
 package com.example.ddonggame;
 
+import kr.co.ddonggame.client.ClientThread;
+import kr.co.ddonggame.client.UserInformation;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -18,10 +20,10 @@ public class OptionActivity extends Activity implements OnClickListener,
 	private RadioButton radioTypeA;
 	private RadioButton radioTypeB;
 	private RadioButton radioTypeC;
-
+	private UserInformation userInformation = UserInformation.getInstance();
 	private ImageView typeImage;
 	private BitmapDrawable typeImageDrawable;
-
+	private ClientThread clientThread = ClientThread.getInstance();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,6 +66,20 @@ public class OptionActivity extends Activity implements OnClickListener,
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-
+		int id = v.getId();
+		switch (id) {
+		case R.id.radio_type_a:
+			clientThread.typeSet("a");
+			userInformation.setType("a");
+			break;
+		case R.id.radio_type_b:
+			clientThread.typeSet("b");
+			userInformation.setType("b");
+			break;
+		case R.id.radio_type_c:
+			clientThread.typeSet("c");
+			userInformation.setType("c");
+			break;
+		}
 	}
 }

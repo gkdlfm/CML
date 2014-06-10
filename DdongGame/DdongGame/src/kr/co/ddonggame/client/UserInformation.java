@@ -4,6 +4,7 @@ public class UserInformation {
 	private static UserInformation userInformation;
 	private String nickName;
 	private int roomNumber;
+	private String type = "a";
 	private String phoneNumber;
 	private UserInformation(){
 		
@@ -44,6 +45,16 @@ public class UserInformation {
 
 	public void setRoomNumber(int roomNumber) {
 		this.roomNumber = roomNumber;
+	}
+
+
+	public String getType() {
+		return type;
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }

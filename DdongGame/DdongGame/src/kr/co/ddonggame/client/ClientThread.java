@@ -102,6 +102,16 @@ public class ClientThread extends Thread {
 		client.handleMessage(msg);
 	}
 	
+	public void typeSet(String type){
+		String msg = "#typeset_"+userInformation.getNickName()+"_"+type;
+		client.handleMessage(msg);
+	}
+	
+	public void typeGet(){
+		String msg = "#typeget_"+userInformation.getNickName();
+		client.handleMessage(msg);
+	}
+	
 	public Client getClient() {
 		return client;
 	}

@@ -90,6 +90,8 @@ public class Client implements ChatIF {
 				gameActivity.gameEnd(message);
 		}else if(message.matches(".*#gameend.*")){
 			gameActivity.gameEnd(message);
+		}else if(message.matches(".*#type.*")){
+			userInformation.setType(message.split("_")[1]);
 		}
 	}
 
