@@ -232,6 +232,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		int id = v.getId();
+		if(doubleClickCheck==0)
 		switch (id) {
 		case R.id.firstCard:
 			firstCard.setImageBitmap(hwatooDeck[0]);

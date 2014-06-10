@@ -60,7 +60,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		phoneNumber = mTelephonyMgr.getLine1Number();
 		userInformation.setPhoneNumber(phoneNumber);
 		Timer timer = new Timer();
-		timer.schedule(mTask, 1000);
+		timer.schedule(mTask, 2000);
 		//타이머를 쓴이유는 getClient가 받아지지 않음. 클라이언트는 스레드로 돌려야하는데 스레드가 돌기전에 참조해서 nullpoint에러남.
 		
 		btnJoin = (Button) this.findViewById(R.id.btnJoin);
