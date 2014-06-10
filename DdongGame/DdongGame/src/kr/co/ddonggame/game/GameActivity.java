@@ -188,11 +188,11 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 		if (temp.equals(userInformation.getNickName())) {
 			// 똥이라서 끝남.
 			Random rand = new Random();
-			int soundInt =  getResources().getIdentifier(Integer.toString(rand.nextInt(4)+1), "raw","com.example.ddonggame");
+			int soundInt =  getResources().getIdentifier("ddong"+Integer.toString(rand.nextInt(4)+1), "raw","com.example.ddonggame");
 					//rand.nextInt(4)+1;
 		
 			
-			sound = soundPool.load(this, R.raw.piano4, 1);
+			sound = soundPool.load(this, soundInt, 1);
 			soundPool.play(sound, 1, 1, 0, 0, 1);
 		}
 		finish();

@@ -1361,10 +1361,10 @@ containing a value of this type.
         public static final int option=0x7f0d0006;
     }
     public static final class raw {
-        public static final int 1=0x7f050000;
-        public static final int 2=0x7f050001;
-        public static final int 3=0x7f050002;
-        public static final int 4=0x7f050003;
+        public static final int ddong_1=0x7f050000;
+        public static final int ddong_2=0x7f050001;
+        public static final int ddong_3=0x7f050002;
+        public static final int ddong_4=0x7f050003;
         public static final int piano4=0x7f050004;
     }
     public static final class string {
