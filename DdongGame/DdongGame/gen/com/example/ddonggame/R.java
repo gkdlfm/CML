@@ -890,6 +890,10 @@ containing a value of this type.
          (such as screen margins) for screens with more than 820dp of available width. This
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
+
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
+    
          */
         public static final int activity_horizontal_margin=0x7f090011;
         public static final int activity_vertical_margin=0x7f090012;
@@ -1229,10 +1233,11 @@ containing a value of this type.
         public static final int support_simple_spinner_dropdown_item=0x7f030028;
     }
     public static final class menu {
-        public static final int game=0x7f0d0000;
-        public static final int game_room=0x7f0d0001;
-        public static final int main=0x7f0d0002;
-        public static final int main_menu=0x7f0d0003;
+        public static final int custom_dialog_acitivty=0x7f0d0000;
+        public static final int game=0x7f0d0001;
+        public static final int game_room=0x7f0d0002;
+        public static final int main=0x7f0d0003;
+        public static final int main_menu=0x7f0d0004;
     }
     public static final class raw {
         public static final int piano4=0x7f050000;
@@ -1281,6 +1286,7 @@ containing a value of this type.
         public static final int action_settings=0x7f0b000f;
         public static final int app_name=0x7f0b000d;
         public static final int hello_world=0x7f0b000e;
+        public static final int title_activity_custom_dialog_acitivty=0x7f0b0013;
         public static final int title_activity_game=0x7f0b0011;
         public static final int title_activity_game_room=0x7f0b0012;
         public static final int title_activity_main_menu=0x7f0b0010;
