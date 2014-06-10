@@ -80,7 +80,11 @@ public class RoomEnter extends ActionBarActivity implements OnClickListener{
 							} else {
 								String temp = st.nextToken();
 								if(i==1 && temp.equals(userInformation.getNickName())){
+									btnReadyOrStart.setVisibility(View.VISIBLE);
 									btnReadyOrStart.setText("start");
+								}
+								else{
+									btnReadyOrStart.setVisibility(View.INVISIBLE);
 								}
 								roomEntry[i - 1].setText(temp);
 							}
