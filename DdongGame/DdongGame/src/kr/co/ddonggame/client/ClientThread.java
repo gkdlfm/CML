@@ -98,7 +98,7 @@ public class ClientThread extends Thread {
 	}
 	
 	public void gameAbnormalEnd(){
-		String msg = "#gameabnormalend_"+userInformation.getRoomNumber();
+		String msg = "#gameabnormalend_"+userInformation.getRoomNumber() + "_" + userInformation.getNickName();
 		client.handleMessage(msg);
 	}
 	
