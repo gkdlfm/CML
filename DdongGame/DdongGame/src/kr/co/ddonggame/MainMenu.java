@@ -15,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.example.ddonggame.OptionActivity;
 import com.example.ddonggame.R;
 
 public class MainMenu extends ActionBarActivity implements OnClickListener {
@@ -57,7 +58,8 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 		case R.id.btnGameMethod:
 			break;
 		case R.id.btnGameOption:
-
+			Intent optionDialog = new Intent(this, OptionActivity.class);
+			startActivity(optionDialog);
 			break;
 		case R.id.btnGameExit:
 			this.finish();

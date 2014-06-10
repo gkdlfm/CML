@@ -2,66 +2,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="500dp"
     android:layout_height="300dp"
-    android:gravity="center"
+    android:paddingTop="10dp"
+    android:layout_gravity="center"
     android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="25dp"
         android:layout_weight="1"
-        android:baselineAligned="false"
+        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" >
+        <RadioGroup
+            android:id="@+id/radio_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:gravity="center"
+            android:orientation="vertical" >
 
             <RadioButton
                 android:id="@+id/radio_type_a"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" >
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="A Type" />
 
             <RadioButton
                 android:id="@+id/radio_type_b"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" >
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="B Type" />
 
             <RadioButton
                 android:id="@+id/radio_type_c"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="C Type" />
+        </RadioGroup>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/type_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/a10_1" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="3" >
+        android:layout_weight="3"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/option_yes_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="100dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:text="YES" />
+
+        <Button
+            android:id="@+id/option_no_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="100dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:text="NO" />
     </LinearLayout>
 
 </LinearLayout>
