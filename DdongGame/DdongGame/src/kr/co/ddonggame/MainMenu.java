@@ -19,6 +19,9 @@ import com.example.ddonggame.R;
 
 public class MainMenu extends ActionBarActivity implements OnClickListener {
 	private Button btnGameStart;
+	private Button btnGameMethod;
+	private Button btnGameOption;
+	private Button btnGameExit;
 	private ClientThread clientThread;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +30,14 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main_menu);
 		btnGameStart = (Button)findViewById(R.id.btnGameStart);
+		btnGameMethod = (Button)findViewById(R.id.btnGameMethod);
+		btnGameOption = (Button)findViewById(R.id.btnGameOption);
+		btnGameExit = (Button)findViewById(R.id.btnGameExit);
 		btnGameStart.setOnClickListener(this);
+		btnGameMethod.setOnClickListener(this);
+		btnGameOption.setOnClickListener(this);
+		btnGameExit.setOnClickListener(this);
+		
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -41,6 +51,14 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 		switch(btn){
 		case R.id.btnGameStart:
 			startActivity(new Intent(this, GameRoom.class));
+			break;
+		case R.id.btnGameMethod:
+			break;
+		case R.id.btnGameOption:
+			
+			break;
+		case R.id.btnGameExit:
+			finish();
 			break;
 		}
 		

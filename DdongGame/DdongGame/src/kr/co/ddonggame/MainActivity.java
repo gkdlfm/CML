@@ -70,9 +70,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	}
 
 	protected void onDestroy() {
+		super.onDestroy();
 		clientThread.quit();
 	}
-	
+	protected void onResume(){
+		super.onResume();
+		finish();
+	}
 	public void onClick(View v) {
 		int btn = v.getId();
 		switch (btn) {

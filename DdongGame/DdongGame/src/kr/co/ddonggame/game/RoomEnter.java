@@ -43,7 +43,7 @@ public class RoomEnter extends ActionBarActivity implements OnClickListener{
 		clientThread.getClient().setRoomEnter(this);
 		Log.i("test", "what??");
 		clientThread.getRoomEntry();
-
+		btnReadyOrStart.setVisibility(View.INVISIBLE);
 		// 닉네임을 보내면 방정보를 얻어온다. (현재 방에 참여하고 있는 인원)
 	}
 	
@@ -80,7 +80,11 @@ public class RoomEnter extends ActionBarActivity implements OnClickListener{
 							} else {
 								String temp = st.nextToken();
 								if(i==1 && temp.equals(userInformation.getNickName())){
+									btnReadyOrStart.setVisibility(View.VISIBLE);
 									btnReadyOrStart.setText("start");
+								}
+								else if(i==1){
+									btnReadyOrStart.setVisibility(View.INVISIBLE);
 								}
 								roomEntry[i - 1].setText(temp);
 							}
