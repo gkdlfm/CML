@@ -3,6 +3,7 @@ package kr.co.ddonggame;
 import kr.co.ddonggame.client.ClientThread;
 import kr.co.ddonggame.client.UserInformation;
 import kr.co.ddonggame.custom.CustomDialog;
+import kr.co.ddonggame.custom.CustomDialogActivity;
 import kr.co.ddonggame.game.RoomEnter;
 import android.app.Dialog;
 import android.content.Intent;
@@ -115,8 +116,13 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		int id = v.getId();
 		switch (id) {
 		case R.id.btnRoomCreate:
-			Dialog createCheckDialog = new CustomDialog(this, "방을 생성 하시겠습니까?", true);
-			createCheckDialog.show();
+			//Dialog createCheckDialog = new CustomDialog(this, "방을 생성 하시겠습니까?", true);
+			//createCheckDialog.show();
+			Intent createDialog = new Intent(this, CustomDialogActivity.class);
+			createDialog.putExtra("title", "방을 생성 하시겠습니까?");
+			createDialog.putExtra("type", 1);
+			
+			startActivity(createDialog);
 			//clientThread.makeRoom(12);
 			break;
 		case R.id.btnRoomRefresh:
