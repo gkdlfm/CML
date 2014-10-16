@@ -67,19 +67,19 @@ public class OptionActivity extends Activity implements OnClickListener,
 		case 1:
 			typeImageDrawable = (BitmapDrawable) getResources().getDrawable(
 					R.drawable.a1_1);
-			clientThread.typeSet("a");
+			clientThread.setType("a");
 			userInformation.setType("a");
 			break;
 		case 2:
 			typeImageDrawable = (BitmapDrawable) getResources().getDrawable(
 					R.drawable.b1_4);
-			clientThread.typeSet("b");
+			clientThread.setType("b");
 			userInformation.setType("b");
 			break;
 		case 3:
 			typeImageDrawable = (BitmapDrawable) getResources().getDrawable(
 					R.drawable.c1_4);
-			clientThread.typeSet("c");
+			clientThread.setType("c");
 			userInformation.setType("c");
 			break;
 		}
@@ -93,16 +93,16 @@ public class OptionActivity extends Activity implements OnClickListener,
 		int id = v.getId();
 		switch (id) {
 		case R.id.radio_type_a:
-			clientThread.typeSet("a");
+			clientThread.setType("a");
 			userInformation.setType("a");
 			break;
 		case R.id.radio_type_b:
 			Log.i("test", "bbb");
-			clientThread.typeSet("b");
+			clientThread.setType("b");
 			userInformation.setType("b");
 			break;
 		case R.id.radio_type_c:
-			clientThread.typeSet("c");
+			clientThread.setType("c");
 			userInformation.setType("c");
 			break;
 		case R.id.option_yes_btn:

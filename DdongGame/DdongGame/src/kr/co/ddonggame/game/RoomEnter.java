@@ -41,7 +41,6 @@ public class RoomEnter extends ActionBarActivity implements OnClickListener{
 			roomEntry[i - 1] = (TextView) findViewById(temp);
 		}
 		clientThread.getClient().setRoomEnter(this);
-		Log.i("test", "what??");
 		clientThread.getRoomEntry();
 		btnReadyOrStart.setVisibility(View.INVISIBLE);
 		// 닉네임을 보내면 방정보를 얻어온다. (현재 방에 참여하고 있는 인원)
@@ -64,7 +63,7 @@ public class RoomEnter extends ActionBarActivity implements OnClickListener{
 		
 	}
 	
-	public void roomEntrySetting(String entry) {
+	public void setRoomEntry(String entry) {
 		final StringTokenizer st = new StringTokenizer(entry, "_");
 		Log.i("roomentry : ", entry);
 		new Thread(new Runnable() {
@@ -81,7 +80,7 @@ public class RoomEnter extends ActionBarActivity implements OnClickListener{
 								String temp = st.nextToken();
 								if(i==1 && temp.equals(userInformation.getNickName())){
 									btnReadyOrStart.setVisibility(View.VISIBLE);
-									btnReadyOrStart.setText("start");
+									btnReadyOrStart.setText("Start");
 								}
 								else if(i==1){
 									btnReadyOrStart.setVisibility(View.INVISIBLE);
@@ -95,7 +94,11 @@ public class RoomEnter extends ActionBarActivity implements OnClickListener{
 		}).start();
 
 	}
-
+	
+	public void roomExit(){
+		Log.i("RoomEnter roomExit", "exit");
+		//super.finish();
+	}
 	@Override
 	public void onDestroy() {
 		clientThread.roomExit();

@@ -7,13 +7,14 @@ import kr.co.ddonggame.client.ClientThread;
 import kr.co.ddonggame.client.UserInformation;
 import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +32,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	private EditText editID;
 	private ClientThread clientThread;
 	private String phoneNumber;
+	private String macAddress;
 	private UserInformation userInformation;
 	static int check = 1;
 
@@ -51,16 +53,22 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		TimerTask mTask = new TimerTask() {
 			public void run() {
 				clientThread.getClient().setMainActivity(MainActivity.this);
-				clientThread.joinCheck(phoneNumber);
-				Log.i("test : phonenumber", phoneNumber);
+				clientThread.joinCheck(macAddress);
+				Log.i("MainActivity", macAddress);
 			}
 		};
 		clientThread = ClientThread.getInstance();
 		clientThread.start();
 
-		TelephonyManager mTelephonyMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-		phoneNumber = mTelephonyMgr.getLine1Number();
-		userInformation.setPhoneNumber(phoneNumber);
+		//TelephonyManager mTelephonyMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+		//phoneNumber = mTelephonyMgr.getLine1Number();
+		//userInformation.setPhoneNumber(phoneNumber);
+		
+		WifiManager wifi = (WifiManager)getSystemService(Context.WIFI_SERVICE);
+		WifiInfo info = wifi.getConnectionInfo();
+		macAddress = info.getMacAddress();
+		userInformation.setMacAddress(macAddress);
+		
 		Timer timer = new Timer();
 		timer.schedule(mTask, 2000);
 		// 타이머를 쓴이유는 getClient가 받아지지 않음. 클라이언트는 스레드로 돌려야하는데 스레드가 돌기전에 참조해서
@@ -93,7 +101,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		case R.id.btnJoin:
 			userInformation.setNickName(editID.getText().toString());
 			clientThread.getClient().setMainActivity(MainActivity.this);
-			clientThread.joinUser(editID.getText().toString(), phoneNumber);
+			clientThread.joinUser(editID.getText().toString(), macAddress);
 			break;
 		}
 	}

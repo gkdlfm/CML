@@ -42,7 +42,7 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 		btnGameMethod.setOnClickListener(this);
 		btnGameOption.setOnClickListener(this);
 		btnGameExit.setOnClickListener(this);
-		clientThread.typeGet();
+		clientThread.getType();
 		
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()

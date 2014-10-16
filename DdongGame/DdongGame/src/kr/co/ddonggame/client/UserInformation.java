@@ -6,6 +6,7 @@ public class UserInformation {
 	private int roomNumber;
 	private String type = "a";
 	private String phoneNumber;
+	private String macAddress;
 	private UserInformation(){
 		
 	}
@@ -55,6 +56,16 @@ public class UserInformation {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+
+	public String getMacAddress() {
+		return macAddress;
+	}
+
+
+	public void setMacAddress(String macAddress) {
+		this.macAddress = macAddress;
 	}
 	
 }

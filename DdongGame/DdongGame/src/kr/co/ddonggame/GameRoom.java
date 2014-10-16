@@ -82,9 +82,10 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		// 바꾸어준다.
 	}
 
-	public void changeRoomInformation(int gameRoomNumber, String roomOpenOrClose) {
+	public void setRoomList(int gameRoomNumber, String roomOpenOrClose) {
 		final int gameRoomNumbertemp = gameRoomNumber;
 		final String roomOpenClosetemp = roomOpenOrClose;
+		Log.i("GameRoom : setRoomList", gameRoomNumber + " ^^ " +  roomOpenOrClose);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -165,16 +166,22 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 		}
 	}
 
-	public void roomEnter() {
-		Log.i("roomEnter Method", "gogogo");
+	public void makeRoom() {
 		try {
 			startActivity(new Intent(this, RoomEnter.class));
 		} catch (Exception e) {
-			Log.i("머징 : ", e.toString());
+			Log.i("GameRoom_makeRoom", e.toString());
 		}
-		Log.i("roomEnter Method", "gogogo");
 	}
-
+	
+	public void roomEnter(){
+		try {
+			startActivity(new Intent(this, RoomEnter.class));
+		} catch (Exception e) {
+			Log.i("GameRoom_roomEnter", e.toString());
+		}
+	}
+	
 	public void roomEnterError() {
 		Toast toast = Toast.makeText(this, "방인원을 초과하였습니다.", Toast.LENGTH_SHORT);
 		toast.show();

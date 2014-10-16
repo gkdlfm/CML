@@ -93,7 +93,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 	}
 
 	public void init(String msg) {
-		Log.i("test", "init");
+		Log.i("GameActivity", "init : "+msg);
 		StringTokenizer st = new StringTokenizer(msg, "_");
 		String temp = st.nextToken();
 		int i = 0;
@@ -284,7 +284,7 @@ public class GameActivity extends ActionBarActivity implements OnClickListener {
 				// CustomDialog cs = new CustomDialog(this, "dd");
 				// confirm.setTurnOverCard(hwatooDeckInt[cardNum - 1]);
 				// confirm.show();
-				String msg = "#nextturn_" + userInformation.getRoomNumber()
+				String msg = "$nextTurn_" + userInformation.getRoomNumber()
 						+ "_" + userInformation.getNickName() + "_"
 						+ hwatooDeckInt[cardNum - 1];
 				clientThread.nextTurn(msg);
