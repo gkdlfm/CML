@@ -10,9 +10,9 @@ import android.content.Intent;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -50,24 +50,30 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 		userInformation = UserInformation.getInstance();
-		TimerTask mTask = new TimerTask() {
-			public void run() {
-				clientThread.getClient().setMainActivity(MainActivity.this);
-				clientThread.joinCheck(macAddress);
-				Log.i("MainActivity", macAddress);
-			}
-		};
+		WifiManager wifi = (WifiManager)getSystemService(Context.WIFI_SERVICE);
+		WifiInfo info = wifi.getConnectionInfo();
+		macAddress = info.getMacAddress();
+		userInformation.setMacAddress(macAddress);
+		
+		
 		clientThread = ClientThread.getInstance();
 		clientThread.start();
+		
+		TimerTask mTask = new TimerTask() {
+
+			public void run() {
+				Log.i("MainActivity", macAddress);
+				clientThread.getClient().setMainActivity(MainActivity.this);
+				clientThread.joinCheck(macAddress);
+				
+			}
+		};
+		
 
 		//TelephonyManager mTelephonyMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 		//phoneNumber = mTelephonyMgr.getLine1Number();
 		//userInformation.setPhoneNumber(phoneNumber);
 		
-		WifiManager wifi = (WifiManager)getSystemService(Context.WIFI_SERVICE);
-		WifiInfo info = wifi.getConnectionInfo();
-		macAddress = info.getMacAddress();
-		userInformation.setMacAddress(macAddress);
 		
 		Timer timer = new Timer();
 		timer.schedule(mTask, 2000);
@@ -77,7 +83,9 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		btnJoin = (Button) this.findViewById(R.id.btnJoin);
 		btnJoin.setOnClickListener(this);
 		editID = (EditText) this.findViewById(R.id.editID);
-
+		
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy); 
 	}
 
 	protected void onDestroy() {
@@ -87,6 +95,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
 	protected void onResume() {
 		super.onResume();
+		
 		// finish();
 	}
 	

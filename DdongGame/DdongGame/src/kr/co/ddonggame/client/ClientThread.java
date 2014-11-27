@@ -19,6 +19,7 @@ public class ClientThread extends Thread {
 	}
 
 	public void run() {
+		Log.i("aa", "123");
 		client = new Client();
 	}
 
@@ -55,7 +56,7 @@ public class ClientThread extends Thread {
 	
 	//방정보(type은 맞게 변경하면된다)
 	public void getRoomList(int roomList){
-		String msg = "@getRoomList_"+roomList;
+		String msg = "@getRoomList_"+roomList+"_"+userInformation.getMacAddress();
 		Log.i("ClientThread getRoomList : ", msg);
 		client.handleMessage(msg);
 	}
@@ -86,12 +87,12 @@ public class ClientThread extends Thread {
 		client.handleMessage(msg);
 	}
 	
-	public void getInit(){
-		String msg = "$getInit_"+userInformation.getRoomNumber();
+	/*public void getInit(){
+		String msg = "$getInit_"+userInformation.getRoomNumber()+"_"+userInformation.getNickName();
 		Log.i("ClientThread getInit : ", msg);
 		client.handleMessage(msg);
 	}
-	
+	*/
 	public void nextTurn(String msg){
 		Log.i("ClientThread nextTurn : ", msg);
 		client.handleMessage(msg);
@@ -100,13 +101,13 @@ public class ClientThread extends Thread {
 	//public void game
 	
 	public void gameEnd(){
-		String msg = "$gameEnd_"+userInformation.getRoomNumber()+"_"+userInformation.getNickName();
+		String msg = "#gameEnd_"+userInformation.getRoomNumber()+"_"+userInformation.getNickName();
 		Log.i("ClientThread gameEnd : ", msg);
 		client.handleMessage(msg);
 	}
 	
 	public void gameAbnormalEnd(){
-		String msg = "$gameAbnormalEnd_"+userInformation.getRoomNumber() + "_" + userInformation.getNickName();
+		String msg = "#gameAbnormalEnd_"+userInformation.getRoomNumber() + "_" + userInformation.getNickName();
 		Log.i("ClientThread gameAbnormalEnd : ", msg);
 		client.handleMessage(msg);
 	}
@@ -129,5 +130,17 @@ public class ClientThread extends Thread {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+	
+	public void locationChange(int index){
+		String msg = "#locationChange_"+userInformation.getNickName()+"_"+index;
+		Log.i("ClientThread locationChange", msg);
+		client.handleMessage(msg);
+	}
+	
+	public void locationChange(String choice){
+		String msg = "#locationChange_"+ choice + "_" + userInformation.getNickName();
+		Log.i("ClientThread locationChange", msg);
+		client.handleMessage(msg);
 	}
 }

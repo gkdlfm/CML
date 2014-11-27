@@ -4,69 +4,112 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="kr.co.ddonggame.game.GameActivity"
-    tools:ignore="MergeRootFrame">
-    
-    <LinearLayout 
-        android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="51dp"
-        android:layout_marginBottom="51dp"
-        android:layout_marginRight="30dp"
+    tools:ignore="MergeRootFrame" >
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1.0"
-        android:orientation="horizontal"
-        >
-        <LinearLayout 
-            android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="6.0" >
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_weight="0.25"
-            >
-            <ImageView 
-                android:id="@+id/firstCard"
+            android:layout_height="match_parent"
+            android:layout_weight="5" >
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+                <TextView 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/card_back"
-                />
+                android:textSize="20dp"
+                android:id="@+id/textViewWait"/>
+            </LinearLayout>
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+                <ProgressBar
+                android:id="@+id/progresscircle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible" />
+            </LinearLayout>
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+                <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20dp"
+                android:id="@+id/textViewTime"/>
+            </LinearLayout>
+            
             
         </LinearLayout>
-        <LinearLayout 
-            android:layout_height="match_parent"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_weight="0.25"
-            >
-            <ImageView 
-                android:id="@+id/secondCard"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="51dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="51dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="1.0" >
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/card_back"
-                />
-        </LinearLayout>
-        <LinearLayout 
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:layout_weight="0.25"
-            >
-            <ImageView 
-                android:id="@+id/thirdCard"
+                android:layout_weight="0.25" >
+
+                <ImageView
+                    android:id="@+id/firstCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/card_back" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/card_back"
-                />
-        </LinearLayout>
-        <LinearLayout 
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:layout_weight="0.25"
-            >
-            <ImageView 
-                android:id="@+id/fourthCard"
+                android:layout_weight="0.25" >
+
+                <ImageView
+                    android:id="@+id/secondCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/card_back" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/card_back"
-                />
+                android:layout_weight="0.25" >
+
+                <ImageView
+                    android:id="@+id/thirdCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/card_back" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" >
+
+                <ImageView
+                    android:id="@+id/fourthCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/card_back" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-    
-</FrameLayout>
 
+</FrameLayout>

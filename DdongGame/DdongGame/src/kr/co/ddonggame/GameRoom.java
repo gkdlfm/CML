@@ -85,7 +85,7 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 	public void setRoomList(int gameRoomNumber, String roomOpenOrClose) {
 		final int gameRoomNumbertemp = gameRoomNumber;
 		final String roomOpenClosetemp = roomOpenOrClose;
-		Log.i("GameRoom : setRoomList", gameRoomNumber + " ^^ " +  roomOpenOrClose);
+		//Log.i("GameRoom : setRoomList", gameRoomNumber + " ^^ " +  roomOpenOrClose);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -112,6 +112,13 @@ public class GameRoom extends ActionBarActivity implements OnClickListener {
 
 	}
 
+	@Override
+	public void onRestart(){
+		Log.i("GameRoom onRestart", "roomList : " + Integer.toString(roomList));
+		clientThread.getRoomList(roomList);
+		super.onRestart();
+	}
+	
 	public void onClick(View v) {
 		int id = v.getId();
 		switch (id) {

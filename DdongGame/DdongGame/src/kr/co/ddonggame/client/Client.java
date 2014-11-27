@@ -11,7 +11,7 @@ import kr.co.ddonggame.game.RoomEnter;
 import android.util.Log;
 
 public class Client implements ChatIF {
-	private String host = "203.249.22.116";
+	private String host = "203.249.22.109";
 	private int port = 8087;
 	private Socket clientSocket;
 	private String login = "android";
@@ -24,14 +24,17 @@ public class Client implements ChatIF {
 	private GameActivity gameActivity;
 	private UserInformation userInformation;
 	public Client() {
-		client = new ChatClient(host, port, login, this);
+		Log.i("aa", "aa");
 		userInformation = UserInformation.getInstance();
+		client = new ChatClient(host, port, userInformation.getMacAddress(), this);
+		Log.i("aa", "aa123");
 	}
 
 	public void handleMessage(String msg) {
 		client.handleMessageFromClientUI(msg);
 	}
 
+	
 	@Override
 	public void display(String message) {
 		messageFromServer = message;
@@ -75,24 +78,37 @@ public class Client implements ChatIF {
 		}else if(message.matches(".*#setRoomEntry.*")){
 			roomEnter.setRoomEntry(message);
 		}else if(message.equals("#gameStart")){
+			userInformation.setGaming(true);
 			roomEnter.gameStart();
 		}else if(message.equals("#roomExit")){
 			//roomEnter.onDestroy();
-		}else if(message.matches(".*$init.*")){
-			gameActivity.init(message);
-		}else if(message.matches(".*$nextTurn.*")){
-			gameActivity.chageCard(message);
-		}else if(message.matches(".*$gameAbnormalEnd.*")){
+		}else if(message.matches(".*#init.*")){
+			Log.i("init : ",message);
+			//gameActivity.init(message);
+			userInformation.setHwatooDeckInt(message);
+			gameActivity.init();
+		}else if(message.matches(".*#nextTurn.*")){
+			//gameActivity.chageCard(message);
+			Log.i("nextTurn : ", message);
+			userInformation.changeHwatooDeckInt(message);
+			//gameActivity.progressFinish();
+			gameActivity.cardChange();
+		}else if(message.matches(".*#gameAbnormalEnd.*")){
 			String temp = message.split("_")[1];
 			if(temp.equals(userInformation.getNickName())){
 				
 			}
 			else
 				gameActivity.gameEnd(message);
-		}else if(message.matches(".*$gameEnd.*")){
+		}else if(message.matches(".*#gameEnd.*")){
 			gameActivity.gameEnd(message);
 		}else if(message.matches(".*%setType.*")){
 			userInformation.setType(message.split("_")[1]);
+		}else if(message.matches(".*#locationChange.*")){
+			StringTokenizer msg = new StringTokenizer(message, "_");
+			msg.nextToken();
+			String temp = msg.nextToken();
+			roomEnter.locationChangeDialog(temp);
 		}
 	}
 

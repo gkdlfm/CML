@@ -14,12 +14,20 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1" >
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/btnSwap1"
+                android:background="@drawable/swap"
+                android:layout_weight="5"
+                ></Button>
             <TextView 
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:id="@+id/roomEntry1"
                 android:text="wating..."
+                android:layout_weight="1"
                 />
         </LinearLayout>
 
@@ -27,12 +35,20 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1" >
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/btnSwap2"
+                android:background="@drawable/swap"
+                android:layout_weight="5"
+                ></Button>
             <TextView 
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:id="@+id/roomEntry2"
                 android:text="wating..."
+                android:layout_weight="1"
                 />
         </LinearLayout>
 
@@ -40,12 +56,20 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1" >
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/btnSwap3"
+                android:background="@drawable/swap"
+                android:layout_weight="5"
+                ></Button>
             <TextView 
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:id="@+id/roomEntry3"
                 android:text="wating..."
+                android:layout_weight="1"
                 />
         </LinearLayout>
 
@@ -53,12 +77,20 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1" >
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/btnSwap4"
+                android:background="@drawable/swap"
+                android:layout_weight="5"
+                ></Button>
             <TextView 
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:id="@+id/roomEntry4"
                 android:text="wating..."
+                android:layout_weight="1"
                 />
         </LinearLayout>
 
@@ -66,12 +98,20 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1" >
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/btnSwap5"
+                android:background="@drawable/swap"
+                android:layout_weight="5"
+                ></Button>
             <TextView 
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:id="@+id/roomEntry5"
                 android:text="wating..."
+                android:layout_weight="1"
                 />
         </LinearLayout>
 
@@ -79,12 +119,20 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1" >
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/btnSwap6"
+                android:background="@drawable/swap"
+                android:layout_weight="5"
+                ></Button>
             <TextView 
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:id="@+id/roomEntry6"
                 android:text="wating..."
+                android:layout_weight="1"
                 />
         </LinearLayout>
 
@@ -92,11 +140,19 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1" >
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/btnSwap7"
+                android:background="@drawable/swap"
+                android:layout_weight="5"
+                ></Button>
             <TextView 
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:id="@+id/roomEntry7"
+                android:layout_weight="1"
                 android:text="wating..."
                 />
         </LinearLayout>
@@ -119,11 +175,19 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1" >
+                <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/btnSwap8"
+                android:background="@drawable/swap"
+                android:layout_weight="5"
+                ></Button>
                 <TextView 
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:id="@+id/roomEntry8"
+                android:layout_weight="1"
                 android:text="wating..."
                 />
             </LinearLayout>
@@ -132,11 +196,19 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1" >
+                <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/btnSwap9"
+                android:background="@drawable/swap"
+                android:layout_weight="5"
+                ></Button>
                 <TextView 
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:id="@+id/roomEntry9"
+                android:layout_weight="1"
                 android:text="wating..."
                 />
             </LinearLayout>
@@ -145,11 +217,19 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1" >
+                <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/btnSwap10"
+                android:background="@drawable/swap"
+                android:layout_weight="5"
+                ></Button>
                 <TextView 
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:id="@+id/roomEntry10"
+                android:layout_weight="1"
                 android:text="wating..."
                 />
             </LinearLayout>
@@ -158,11 +238,19 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1" >
+                <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/btnSwap11"
+                android:background="@drawable/swap"
+                android:layout_weight="5"
+                ></Button>
                 <TextView 
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:id="@+id/roomEntry11"
+                android:layout_weight="1"
                 android:text="wating..."
                 />
             </LinearLayout>
@@ -171,11 +259,19 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1" >
+                <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/btnSwap12"
+                android:background="@drawable/swap"
+                android:layout_weight="5"
+                ></Button>
                 <TextView 
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:id="@+id/roomEntry12"
+                android:layout_weight="1"
                 android:text="wating..."
                 />
             </LinearLayout>

@@ -286,7 +286,7 @@ public abstract class AbstractClient implements Runnable
           connectionException(ex);
           
         } catch (RuntimeException ex) { // thrown by handleMessageFromServer
-        
+        	ex.printStackTrace();
           connectionException(ex);
         }
       } 

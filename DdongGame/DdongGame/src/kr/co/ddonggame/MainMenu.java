@@ -66,15 +66,26 @@ public class MainMenu extends ActionBarActivity implements OnClickListener {
 			startActivity(optionDialog);
 			break;
 		case R.id.btnGameExit:
+			clientThread.quit();
 			this.finish();
 			Intent intent = new Intent(Intent.ACTION_MAIN);
 			intent.addCategory(Intent.CATEGORY_HOME);
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
-			clientThread.quit();
+			
 			break;
 		}
 
+	}
+	
+	protected void onDestroy() {
+		clientThread.quit();
+		super.onDestroy();
+		this.finish();
+		Intent intent = new Intent(Intent.ACTION_MAIN);
+		intent.addCategory(Intent.CATEGORY_HOME);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
 	}
 
 	@Override

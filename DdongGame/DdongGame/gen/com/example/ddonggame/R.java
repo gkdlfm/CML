@@ -1146,10 +1146,11 @@ containing a value of this type.
         public static final int method_8=0x7f0200f4;
         public static final int method_9=0x7f0200f5;
         public static final int rightbutton=0x7f0200f6;
+        public static final int swap=0x7f0200f7;
     }
     public static final class id {
-        public static final int Main_Menu=0x7f06006f;
-        public static final int RoomGrid=0x7f060062;
+        public static final int Main_Menu=0x7f06007e;
+        public static final int RoomGrid=0x7f060071;
         public static final int action_bar=0x7f06001c;
         public static final int action_bar_activity_content=0x7f060015;
         public static final int action_bar_container=0x7f06001b;
@@ -1161,99 +1162,112 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_settings=0x7f060082;
+        public static final int action_settings=0x7f060091;
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
-        public static final int btnGameExit=0x7f060049;
-        public static final int btnGameMethod=0x7f060048;
-        public static final int btnGameOption=0x7f060047;
-        public static final int btnGameStart=0x7f060046;
-        public static final int btnJoin=0x7f060045;
-        public static final int btnReadyOrStart=0x7f060061;
-        public static final int btnRoom1Enter=0x7f060072;
-        public static final int btnRoom2Enter=0x7f060075;
-        public static final int btnRoom3Enter=0x7f060078;
-        public static final int btnRoom4Enter=0x7f06007b;
-        public static final int btnRoom5Enter=0x7f06007e;
-        public static final int btnRoom6Enter=0x7f060081;
-        public static final int btnRoomCreate=0x7f06004d;
-        public static final int btnRoomLeft=0x7f060063;
-        public static final int btnRoomRefresh=0x7f06004c;
-        public static final int btnRoomRight=0x7f06006a;
+        public static final int btnGameExit=0x7f06004c;
+        public static final int btnGameMethod=0x7f06004b;
+        public static final int btnGameOption=0x7f06004a;
+        public static final int btnGameStart=0x7f060049;
+        public static final int btnJoin=0x7f060048;
+        public static final int btnReadyOrStart=0x7f060070;
+        public static final int btnRoom1Enter=0x7f060081;
+        public static final int btnRoom2Enter=0x7f060084;
+        public static final int btnRoom3Enter=0x7f060087;
+        public static final int btnRoom4Enter=0x7f06008a;
+        public static final int btnRoom5Enter=0x7f06008d;
+        public static final int btnRoom6Enter=0x7f060090;
+        public static final int btnRoomCreate=0x7f060050;
+        public static final int btnRoomLeft=0x7f060072;
+        public static final int btnRoomRefresh=0x7f06004f;
+        public static final int btnRoomRight=0x7f060079;
+        public static final int btnSwap1=0x7f060058;
+        public static final int btnSwap10=0x7f06006a;
+        public static final int btnSwap11=0x7f06006c;
+        public static final int btnSwap12=0x7f06006e;
+        public static final int btnSwap2=0x7f06005a;
+        public static final int btnSwap3=0x7f06005c;
+        public static final int btnSwap4=0x7f06005e;
+        public static final int btnSwap5=0x7f060060;
+        public static final int btnSwap6=0x7f060062;
+        public static final int btnSwap7=0x7f060064;
+        public static final int btnSwap8=0x7f060066;
+        public static final int btnSwap9=0x7f060068;
         public static final int checkbox=0x7f06002d;
         public static final int collapseActionView=0x7f06000d;
         public static final int container=0x7f06003c;
-        public static final int customDialogNoBtn=0x7f06006e;
-        public static final int customDialogOkBtn=0x7f06006d;
-        public static final int customDialogTitle=0x7f06006b;
+        public static final int customDialogNoBtn=0x7f06007d;
+        public static final int customDialogOkBtn=0x7f06007c;
+        public static final int customDialogTitle=0x7f06007a;
         public static final int default_activity_button=0x7f060028;
         public static final int dialog=0x7f06000e;
         public static final int disableHome=0x7f060008;
         public static final int dropdown=0x7f06000f;
-        public static final int editID=0x7f060044;
-        public static final int editWrap=0x7f06006c;
+        public static final int editID=0x7f060047;
+        public static final int editWrap=0x7f06007b;
         public static final int edit_query=0x7f060030;
         public static final int end=0x7f060013;
         public static final int expand_activities_button=0x7f060026;
         public static final int expanded_menu=0x7f06002c;
-        public static final int firstCard=0x7f06003d;
-        public static final int fourthCard=0x7f060040;
+        public static final int firstCard=0x7f060040;
+        public static final int fourthCard=0x7f060043;
         public static final int home=0x7f060014;
         public static final int homeAsUp=0x7f060005;
-        public static final int horizontalScrollView1=0x7f060041;
+        public static final int horizontalScrollView1=0x7f060044;
         public static final int icon=0x7f06002a;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f060027;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f060029;
-        public static final int menu=0x7f060042;
-        public static final int menuScreen=0x7f06004a;
+        public static final int menu=0x7f060045;
+        public static final int menuScreen=0x7f06004d;
         public static final int middle=0x7f060012;
         public static final int never=0x7f060009;
-        public static final int nickNameTextView=0x7f06004b;
+        public static final int nickNameTextView=0x7f06004e;
         public static final int none=0x7f060010;
         public static final int normal=0x7f060000;
-        public static final int option_no_btn=0x7f060054;
-        public static final int option_yes_btn=0x7f060053;
+        public static final int option_no_btn=0x7f060057;
+        public static final int option_yes_btn=0x7f060056;
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
+        public static final int progresscircle=0x7f06003e;
         public static final int radio=0x7f06002f;
-        public static final int radio_type=0x7f06004e;
-        public static final int radio_type_a=0x7f06004f;
-        public static final int radio_type_b=0x7f060050;
-        public static final int radio_type_c=0x7f060051;
-        public static final int room1=0x7f060070;
-        public static final int room1TextView=0x7f060071;
-        public static final int room1_fragment=0x7f060064;
-        public static final int room2=0x7f060073;
-        public static final int room2TextView=0x7f060074;
-        public static final int room2_fragment=0x7f060065;
-        public static final int room3=0x7f060076;
-        public static final int room3TextView=0x7f060077;
-        public static final int room3_fragment=0x7f060066;
-        public static final int room4=0x7f060079;
-        public static final int room4TextView=0x7f06007a;
-        public static final int room4_fragment=0x7f060067;
-        public static final int room5=0x7f06007c;
-        public static final int room5TextView=0x7f06007d;
-        public static final int room5_fragment=0x7f060068;
-        public static final int room6=0x7f06007f;
-        public static final int room6TextView=0x7f060080;
-        public static final int room6_fragment=0x7f060069;
-        public static final int roomEntry1=0x7f060055;
-        public static final int roomEntry10=0x7f06005e;
-        public static final int roomEntry11=0x7f06005f;
-        public static final int roomEntry12=0x7f060060;
-        public static final int roomEntry2=0x7f060056;
-        public static final int roomEntry3=0x7f060057;
-        public static final int roomEntry4=0x7f060058;
-        public static final int roomEntry5=0x7f060059;
-        public static final int roomEntry6=0x7f06005a;
-        public static final int roomEntry7=0x7f06005b;
-        public static final int roomEntry8=0x7f06005c;
-        public static final int roomEntry9=0x7f06005d;
-        public static final int roomList=0x7f060043;
+        public static final int radio_type=0x7f060051;
+        public static final int radio_type_a=0x7f060052;
+        public static final int radio_type_b=0x7f060053;
+        public static final int radio_type_c=0x7f060054;
+        public static final int room1=0x7f06007f;
+        public static final int room1TextView=0x7f060080;
+        public static final int room1_fragment=0x7f060073;
+        public static final int room2=0x7f060082;
+        public static final int room2TextView=0x7f060083;
+        public static final int room2_fragment=0x7f060074;
+        public static final int room3=0x7f060085;
+        public static final int room3TextView=0x7f060086;
+        public static final int room3_fragment=0x7f060075;
+        public static final int room4=0x7f060088;
+        public static final int room4TextView=0x7f060089;
+        public static final int room4_fragment=0x7f060076;
+        public static final int room5=0x7f06008b;
+        public static final int room5TextView=0x7f06008c;
+        public static final int room5_fragment=0x7f060077;
+        public static final int room6=0x7f06008e;
+        public static final int room6TextView=0x7f06008f;
+        public static final int room6_fragment=0x7f060078;
+        public static final int roomEntry1=0x7f060059;
+        public static final int roomEntry10=0x7f06006b;
+        public static final int roomEntry11=0x7f06006d;
+        public static final int roomEntry12=0x7f06006f;
+        public static final int roomEntry2=0x7f06005b;
+        public static final int roomEntry3=0x7f06005d;
+        public static final int roomEntry4=0x7f06005f;
+        public static final int roomEntry5=0x7f060061;
+        public static final int roomEntry6=0x7f060063;
+        public static final int roomEntry7=0x7f060065;
+        public static final int roomEntry8=0x7f060067;
+        public static final int roomEntry9=0x7f060069;
+        public static final int roomList=0x7f060046;
         public static final int search_badge=0x7f060032;
         public static final int search_bar=0x7f060031;
         public static final int search_button=0x7f060033;
@@ -1264,7 +1278,7 @@ containing a value of this type.
         public static final int search_plate=0x7f060036;
         public static final int search_src_text=0x7f060037;
         public static final int search_voice_btn=0x7f06003b;
-        public static final int secondCard=0x7f06003e;
+        public static final int secondCard=0x7f060041;
         public static final int shortcut=0x7f06002e;
         public static final int showCustom=0x7f060007;
         public static final int showHome=0x7f060004;
@@ -1272,10 +1286,12 @@ containing a value of this type.
         public static final int split_action_bar=0x7f06001e;
         public static final int submit_area=0x7f060039;
         public static final int tabMode=0x7f060002;
-        public static final int thirdCard=0x7f06003f;
+        public static final int textViewTime=0x7f06003f;
+        public static final int textViewWait=0x7f06003d;
+        public static final int thirdCard=0x7f060042;
         public static final int title=0x7f06002b;
         public static final int top_action_bar=0x7f060020;
-        public static final int type_image=0x7f060052;
+        public static final int type_image=0x7f060055;
         public static final int up=0x7f060021;
         public static final int useLogo=0x7f060003;
         public static final int withText=0x7f06000c;
@@ -1420,15 +1436,6 @@ containing a value of this type.
     }
     public static final class style {
         /** 
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
-
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
     
@@ -1441,10 +1448,6 @@ containing a value of this type.
  API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f0c0083;
-        /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
-         */
-        public static final int AppTheme=0x7f0c0084;
         /**  Mimic text appearance in select_dialog_item.xml 
          */
         public static final int TextAppearance_AppCompat_Base_CompactMenu_Dialog=0x7f0c0063;
